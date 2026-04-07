@@ -19,6 +19,16 @@
     "noRegister": "Sans inscription",
     "whatsapp": "Contact direct via WhatsApp"
   },
+  "features": {
+    "instant": "Publication instantanée",
+    "instantDesc": "Postez votre annonce en moins de 30 secondes",
+    "secure": "100% Sécurisé",
+    "secureDesc": "Paiement en main propre, pas de risque",
+    "community": "Communauté active",
+    "communityDesc": "Des milliers d'acheteurs au Maroc",
+    "fast": "Vente rapide",
+    "fastDesc": "Contact direct via WhatsApp"
+  },
   "search": {
     "placeholder": "Que cherchez-vous ? (voiture, iPhone, vêtements...)"
   },

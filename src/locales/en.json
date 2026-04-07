@@ -19,6 +19,16 @@
     "noRegister": "No registration",
     "whatsapp": "Direct contact via WhatsApp"
   },
+  "features": {
+    "instant": "Instant posting",
+    "instantDesc": "Post your ad in less than 30 seconds",
+    "secure": "100% Secure",
+    "secureDesc": "Cash payment, no risk",
+    "community": "Active community",
+    "communityDesc": "Thousands of buyers in Morocco",
+    "fast": "Fast sale",
+    "fastDesc": "Direct contact via WhatsApp"
+  },
   "search": {
     "placeholder": "What are you looking for? (car, iPhone, clothes...)"
   },

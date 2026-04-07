@@ -214,6 +214,34 @@ function App() {
               </div>
             </section>
 
+            {/* Features */}
+            <section className="py-12 px-4 bg-[#F5F7FA]">
+              <div className="max-w-7xl mx-auto">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                  <div className="text-center p-6 bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow">
+                    <div className="text-4xl mb-3">⚡</div>
+                    <h3 className="text-lg font-bold text-gray-800 mb-2">{t('features.instant')}</h3>
+                    <p className="text-gray-600 text-sm">{t('features.instantDesc')}</p>
+                  </div>
+                  <div className="text-center p-6 bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow">
+                    <div className="text-4xl mb-3">🔒</div>
+                    <h3 className="text-lg font-bold text-gray-800 mb-2">{t('features.secure')}</h3>
+                    <p className="text-gray-600 text-sm">{t('features.secureDesc')}</p>
+                  </div>
+                  <div className="text-center p-6 bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow">
+                    <div className="text-4xl mb-3">👥</div>
+                    <h3 className="text-lg font-bold text-gray-800 mb-2">{t('features.community')}</h3>
+                    <p className="text-gray-600 text-sm">{t('features.communityDesc')}</p>
+                  </div>
+                  <div className="text-center p-6 bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow">
+                    <div className="text-4xl mb-3">💬</div>
+                    <h3 className="text-lg font-bold text-gray-800 mb-2">{t('features.fast')}</h3>
+                    <p className="text-gray-600 text-sm">{t('features.fastDesc')}</p>
+                  </div>
+                </div>
+              </div>
+            </section>
+
             {/* Search Bar */}
             <section className="py-8 px-4">
               <div className="max-w-2xl mx-auto">
