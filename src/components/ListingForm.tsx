@@ -42,6 +42,7 @@ export default function ListingForm({ onSuccess, onBack }: ListingFormProps) {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [pin, setPin] = useState('');
+  const [pinLength, setPinLength] = useState<4 | 6>(4);
 
   const [formData, setFormData] = useState<FormData>({
     title: '',
@@ -83,7 +84,7 @@ export default function ListingForm({ onSuccess, onBack }: ListingFormProps) {
   const validateForm = (): boolean => {
     const consent = (document.getElementById('consent') as HTMLInputElement)?.checked;
     if (!consent) { setError(t('form.consentError')); return false; }
-    if (!pin || pin.length !== 4) { setError(t('form.errorPin')); return false; }
+    if (!pin || (pin.length !== 4 && pin.length !== 6)) { setError(pinLength === 4 ? t('form.errorPin4') : t('form.errorPin6')); return false; }
     if (!formData.title.trim()) { setError(t('form.errorTitle')); return false; }
     if (formData.price <= 0) { setError(t('form.errorPrice')); return false; }
     if (!formData.location) { setError(t('form.errorLocation')); return false; }
@@ -295,12 +296,36 @@ export default function ListingForm({ onSuccess, onBack }: ListingFormProps) {
         <label className="text-sm font-medium text-gray-700 mb-2 block">
           {t('form.pin')} 🔒
         </label>
+        <div className="flex gap-2 mb-2">
+          <button
+            type="button"
+            onClick={() => { setPinLength(4); setPin(''); }}
+            className={`flex-1 py-2 rounded-lg text-sm font-medium border-2 transition-all ${
+              pinLength === 4 
+                ? 'border-[#16A34A] bg-green-50 text-[#16A34A]' 
+                : 'border-gray-200 text-gray-500 hover:border-gray-300'
+            }`}
+          >
+            4 {t('form.digits')}
+          </button>
+          <button
+            type="button"
+            onClick={() => { setPinLength(6); setPin(''); }}
+            className={`flex-1 py-2 rounded-lg text-sm font-medium border-2 transition-all ${
+              pinLength === 6 
+                ? 'border-[#16A34A] bg-green-50 text-[#16A34A]' 
+                : 'border-gray-200 text-gray-500 hover:border-gray-300'
+            }`}
+          >
+            6 {t('form.digits')}
+          </button>
+        </div>
         <input
           type="password"
-          maxLength={4}
+          maxLength={pinLength}
           value={pin}
-          onChange={(e) => setPin(e.target.value.replace(/\D/g, '').slice(0, 4))}
-          placeholder="••••"
+          onChange={(e) => setPin(e.target.value.replace(/\D/g, '').slice(0, pinLength))}
+          placeholder={pinLength === 4 ? '••••' : '••••••'}
           className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-[#16A34A] outline-none text-center text-2xl tracking-widest"
         />
         <p className="text-xs text-gray-500 mt-1">{t('form.pinDesc')}</p>

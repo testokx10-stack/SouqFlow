@@ -17,6 +17,8 @@ export default function MyListings({ sellerPhone }: MyListingsProps) {
   const [deleteConfirm, setDeleteConfirm] = useState<string | null>(null);
   const [verifiedPin, setVerifiedPin] = useState<string | null>(null);
   const [showPinModal, setShowPinModal] = useState(false);
+  const [pinInput, setPinInput] = useState('');
+  const [error, setError] = useState<string | null>(null);
 
   const normalizePhone = (phone: string): string => {
     let cleaned = phone.replace(/\D/g, '');
@@ -47,8 +49,10 @@ export default function MyListings({ sellerPhone }: MyListingsProps) {
   useEffect(() => {
     const normalizedPhone = normalizePhone(sellerPhone);
     const storedPin = localStorage.getItem(`yousouq_pin_${normalizedPhone}`);
+    console.log('MyListings useEffect:', { sellerPhone, normalizedPhone, storedPin, verifiedPin });
     if (storedPin) {
       setVerifiedPin(storedPin);
+      setShowPinModal(false);
     } else {
       setShowPinModal(true);
     }
@@ -61,16 +65,18 @@ export default function MyListings({ sellerPhone }: MyListingsProps) {
     if (!storedPin) {
       localStorage.setItem(`yousouq_pin_${normalizedPhone}`, pin);
       setVerifiedPin(pin);
+      setShowPinModal(false);
     } else if (storedPin === pin) {
       setVerifiedPin(pin);
+      setShowPinModal(false);
+    } else if (pin.length === 4 && storedPin.length === 6) {
+      setError(t('myListings.wrongPin') + ' (6 ' + t('form.digits') + ')');
+    } else if (pin.length === 6 && storedPin.length === 4) {
+      setError(t('myListings.wrongPin') + ' (4 ' + t('form.digits') + ')');
     } else {
       setError(t('myListings.wrongPin'));
-      return;
     }
-    setShowPinModal(false);
   };
-
-  const [error, setError] = useState<string | null>(null);
 
   const handleMarkAsSold = async (id: string) => {
     if (!verifiedPin) { setShowPinModal(true); return; }
@@ -101,6 +107,40 @@ export default function MyListings({ sellerPhone }: MyListingsProps) {
     setEditingId(null);
     fetchMyListings();
   };
+
+  const normalizedPhone = normalizePhone(sellerPhone);
+  const storedPin = localStorage.getItem(`yousouq_pin_${normalizedPhone}`);
+  const pinLength: 4 | 6 = storedPin?.length === 6 ? 6 : 4;
+
+  if (showPinModal) {
+    return (
+      <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
+        <div className="bg-white rounded-xl p-6 max-w-sm w-full">
+          <div className="flex items-center gap-2 mb-4">
+            <Lock className="w-5 h-5 text-[#16A34A]" />
+            <h3 className="text-xl font-bold">{t('myListings.enterPin')}</h3>
+          </div>
+          <p className="text-gray-600 text-sm mb-4">{t('myListings.pinDesc')}</p>
+          <input
+            type="password"
+            maxLength={pinLength}
+            value={pinInput}
+            onChange={(e) => { setPinInput(e.target.value.replace(/\D/g, '').slice(0, pinLength)); setError(null); }}
+            placeholder={pinLength === 4 ? '••••' : '••••••'}
+            className="w-full px-4 py-3 border border-gray-200 rounded-lg mb-4 text-center text-2xl tracking-widest"
+          />
+          {error && <p className="text-red-600 text-sm mb-4 text-center">{error}</p>}
+          <button
+            onClick={() => handleVerifyPin(pinInput)}
+            disabled={pinInput.length !== pinLength}
+            className="w-full bg-[#16A34A] text-white py-3 rounded-lg font-medium disabled:bg-gray-300"
+          >
+            {t('myListings.verify')}
+          </button>
+        </div>
+      </div>
+    );
+  }
 
   if (loading) {
     return <div className="text-center py-8">Chargement...</div>;
@@ -177,19 +217,19 @@ export default function MyListings({ sellerPhone }: MyListingsProps) {
                   </div>
                   
                   <div className="flex gap-1">
-                    <button onClick={() => handleEdit(listing)} className="p-2 text-blue-600 hover:bg-blue-50 rounded" title={t('myListings.edit')}>
+                    <button onClick={() => { if (!verifiedPin) { setShowPinModal(true); return; } handleEdit(listing); }} className="p-2 text-blue-600 hover:bg-blue-50 rounded" title={t('myListings.edit')}>
                       <Edit className="w-4 h-4" />
                     </button>
                     {listing.status === 'active' ? (
-                      <button onClick={() => handleMarkAsSold(listing.id)} className="p-2 text-green-600 hover:bg-green-50 rounded" title={t('myListings.markSold')}>
+                      <button onClick={() => { if (!verifiedPin) { setShowPinModal(true); return; } handleMarkAsSold(listing.id); }} className="p-2 text-green-600 hover:bg-green-50 rounded" title={t('myListings.markSold')}>
                         <Check className="w-4 h-4" />
                       </button>
                     ) : (
-                      <button onClick={() => handleReactivate(listing.id)} className="p-2 text-orange-600 hover:bg-orange-50 rounded" title={t('myListings.reactivate')}>
+                      <button onClick={() => { if (!verifiedPin) { setShowPinModal(true); return; } handleReactivate(listing.id); }} className="p-2 text-orange-600 hover:bg-orange-50 rounded" title={t('myListings.reactivate')}>
                         <MessageCircle className="w-4 h-4" />
                       </button>
                     )}
-                    <button onClick={() => setDeleteConfirm(listing.id)} className="p-2 text-red-600 hover:bg-red-50 rounded" title={t('myListings.delete')}>
+                    <button onClick={() => { if (!verifiedPin) { setShowPinModal(true); return; } setDeleteConfirm(listing.id); }} className="p-2 text-red-600 hover:bg-red-50 rounded" title={t('myListings.delete')}>
                       <Trash2 className="w-4 h-4" />
                     </button>
                   </div>
@@ -206,40 +246,9 @@ export default function MyListings({ sellerPhone }: MyListingsProps) {
                 <button onClick={() => setDeleteConfirm(null)} className="px-3 py-1 bg-gray-200 text-gray-700 rounded text-sm">{t('myListings.cancel')}</button>
               </div>
               </div>
-            )}
+          )}
         </div>
       ))}
     </div>
   );
-
-  if (showPinModal) {
-    const [pin, setPin] = useState('');
-    return (
-      <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
-        <div className="bg-white rounded-xl p-6 max-w-sm w-full">
-          <div className="flex items-center gap-2 mb-4">
-            <Lock className="w-5 h-5 text-[#16A34A]" />
-            <h3 className="text-xl font-bold">{t('myListings.enterPin')}</h3>
-          </div>
-          <p className="text-gray-600 text-sm mb-4">{t('myListings.pinDesc')}</p>
-          <input
-            type="password"
-            maxLength={4}
-            value={pin}
-            onChange={(e) => { setPin(e.target.value.replace(/\D/g, '').slice(0,4)); setError(null); }}
-            placeholder="••••"
-            className="w-full px-4 py-3 border border-gray-200 rounded-lg mb-4 text-center text-2xl tracking-widest"
-          />
-          {error && <p className="text-red-600 text-sm mb-4 text-center">{error}</p>}
-          <button
-            onClick={() => handleVerifyPin(pin)}
-            disabled={pin.length !== 4}
-            className="w-full bg-[#16A34A] text-white py-3 rounded-lg font-medium disabled:bg-gray-300"
-          >
-            {t('myListings.verify')}
-          </button>
-        </div>
-      </div>
-    );
-  }
 }

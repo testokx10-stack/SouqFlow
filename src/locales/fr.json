@@ -107,9 +107,11 @@
     "errorSubmit": "Erreur lors de la publication",
     "consent": "J'accepte que mes données (numéro WhatsApp, nom) soient utilisées pour publier mon annonce et permettre aux acheteurs de me contacter. Je comprends que je peux demander la suppression de mes données à tout moment.",
     "consentError": "Vous devez accepter les conditions pour publier une annonce",
-    "pin": "Code PIN (4 chiffres)",
+    "pin": "Code PIN",
     "pinDesc": "Créez un code PIN pour gérer vos annonces plus tard",
-    "errorPin": "Le code PIN doit contenir 4 chiffres"
+    "digits": "chiffres",
+    "errorPin4": "Le code PIN doit contenir 4 chiffres",
+    "errorPin6": "Le code PIN doit contenir 6 chiffres"
   },
   "footer": {
     "about": "YouSouq - Marketplace Maroc",

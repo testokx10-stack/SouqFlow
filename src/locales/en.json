@@ -107,9 +107,11 @@
     "errorSubmit": "Error posting ad",
     "consent": "I accept that my data (WhatsApp number, name) will be used to post my ad and allow buyers to contact me. I understand I can request deletion of my data at any time.",
     "consentError": "You must accept the terms to post an ad",
-    "pin": "PIN code (4 digits)",
+    "pin": "PIN code",
     "pinDesc": "Create a PIN to manage your listings later",
-    "errorPin": "PIN must be 4 digits"
+    "digits": "digits",
+    "errorPin4": "PIN must be 4 digits",
+    "errorPin6": "PIN must be 6 digits"
   },
   "terms": {
     "title": "Terms of Service",
