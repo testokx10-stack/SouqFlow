@@ -5,13 +5,6 @@ interface ListingCardProps {
   listing: Listing;
 }
 
-const CONDITION_LABELS: Record<string, string> = {
-  neuf: 'Neuf',
-  tres_bon: 'Très bon état',
-  bon: 'Bon état',
-  use: 'Usé'
-};
-
 const CATEGORY_LABELS: Record<string, string> = {
   electronics: 'Électronique',
   cars: 'Véhicules',
@@ -19,6 +12,7 @@ const CATEGORY_LABELS: Record<string, string> = {
   home: 'Maison',
   sports: 'Sports',
   books: 'Livres',
+  phones: 'Téléphones',
   other: 'Autre'
 };
 
@@ -31,20 +25,9 @@ export default function ListingCard({ listing }: ListingCardProps) {
     window.open(whatsappUrl, '_blank');
   };
 
-  const formatDate = (dateString: string) => {
-    const date = new Date(dateString);
-    const now = new Date();
-    const diffInHours = Math.floor((now.getTime() - date.getTime()) / (1000 * 60 * 60));
-
-    if (diffInHours < 1) return 'Il y a quelques minutes';
-    if (diffInHours < 24) return `Il y a ${diffInHours}h`;
-    if (diffInHours < 48) return 'Hier';
-    return date.toLocaleDateString('fr-MA');
-  };
-
   return (
-    <div className="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-shadow">
-      <div className="relative h-48 bg-gray-200">
+    <div className="bg-white rounded-xl shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1 overflow-hidden">
+      <div className="relative h-44 bg-gray-100">
         {listing.image_url ? (
           <img
             src={listing.image_url}
@@ -54,50 +37,38 @@ export default function ListingCard({ listing }: ListingCardProps) {
           />
         ) : (
           <div className="w-full h-full flex items-center justify-center">
-            <Package className="w-16 h-16 text-gray-400" />
+            <Package className="w-12 h-12 text-gray-300" />
           </div>
         )}
-        <div className="absolute top-2 right-2 bg-green-600 text-white px-3 py-1 rounded-full text-sm font-bold">
+        <div className="absolute top-2 right-2 bg-[#F97316] text-white px-3 py-1 rounded-full text-sm font-bold">
           {listing.price} DH
         </div>
-      </div>
-
-      <div className="p-4">
-        <h3 className="text-lg font-bold text-gray-800 mb-2 line-clamp-1">
-          {listing.title}
-        </h3>
-
-        <p className="text-gray-600 text-sm mb-3 line-clamp-2">
-          {listing.description}
-        </p>
-
-        <div className="flex items-center gap-4 text-xs text-gray-500 mb-3">
-          <span className="flex items-center gap-1">
+        {listing.location && (
+          <div className="absolute bottom-2 left-2 bg-black/50 text-white text-xs px-2 py-1 rounded flex items-center gap-1">
             <MapPin className="w-3 h-3" />
             {listing.location}
-          </span>
-          <span className="bg-blue-100 text-blue-800 px-2 py-1 rounded">
-            {CATEGORY_LABELS[listing.category]}
-          </span>
-          <span className="bg-gray-100 px-2 py-1 rounded">
-            {CONDITION_LABELS[listing.condition]}
-          </span>
-        </div>
-
-        <div className="flex items-center justify-between pt-3 border-t">
-          <div className="text-xs text-gray-500">
-            <p className="font-medium text-gray-700">{listing.seller_name}</p>
-            <p>{formatDate(listing.created_at)}</p>
           </div>
+        )}
+      </div>
 
-          <button
-            onClick={handleWhatsAppClick}
-            className="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-lg font-medium flex items-center gap-2 transition-colors"
-          >
-            <MessageCircle className="w-4 h-4" />
-            WhatsApp
-          </button>
-        </div>
+      <div className="p-3">
+        <h3 className="font-semibold text-gray-800 mb-1 line-clamp-1">
+          {listing.title}
+        </h3>
+        
+        {listing.category && (
+          <span className="inline-block text-xs text-gray-500 bg-gray-100 px-2 py-0.5 rounded mb-2">
+            {CATEGORY_LABELS[listing.category] || listing.category}
+          </span>
+        )}
+
+        <button
+          onClick={handleWhatsAppClick}
+          className="w-full bg-[#16A34A] hover:bg-green-700 text-white py-2 rounded-lg font-medium flex items-center justify-center gap-2 transition-colors text-sm"
+        >
+          <MessageCircle className="w-4 h-4" />
+          Contacter WhatsApp
+        </button>
       </div>
     </div>
   );

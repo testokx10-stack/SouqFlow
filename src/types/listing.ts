@@ -1,6 +1,6 @@
 export type ProductCondition = 'neuf' | 'tres_bon' | 'bon' | 'use';
 export type ListingStatus = 'active' | 'sold' | 'inactive';
-export type ProductCategory = 'electronics' | 'cars' | 'clothes' | 'home' | 'sports' | 'books' | 'other';
+export type ProductCategory = 'electronics' | 'cars' | 'clothes' | 'home' | 'sports' | 'books' | 'phones' | 'other';
 
 export interface Listing {
   id: string;
