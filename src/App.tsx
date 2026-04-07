@@ -162,9 +162,10 @@ function App() {
         {currentView === 'home' ? (
           <>
             {/* Hero Section */}
-            <section className="py-8 px-4">
+            <section className="py-6 px-4">
               <div className="max-w-3xl mx-auto text-center">
-                <img src="/logo.png" alt="YouSouq" className="h-24 md:h-32 w-auto mx-auto mb-6" />
+                <img src="/logo.png" alt="YouSouq" className="h-40 md:h-56 w-auto mx-auto mb-4" />
+                <h1 className="text-3xl md:text-4xl font-bold text-gray-800 mb-4">
                 <h1 className="text-3xl md:text-4xl font-bold text-gray-800 mb-4">
                   {t('hero.title')}
                 </h1>
