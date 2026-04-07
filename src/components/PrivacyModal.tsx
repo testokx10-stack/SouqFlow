@@ -19,31 +19,39 @@ export default function PrivacyModal({ isOpen, onClose }: PrivacyModalProps) {
             <X className="w-6 h-6" />
           </button>
         </div>
-        <div className="p-6 text-gray-700">
-          <h3 className="text-lg font-semibold mb-4">{t('privacy.data')}</h3>
-          <p className="mb-4">
-            {t('privacy.dataText')}
-          </p>
-          <p className="mb-4">
-            {t('privacy.stored')}
-          </p>
-          <h3 className="text-lg font-semibold mb-4">{t('privacy.cookies')}</h3>
-          <p className="mb-4">
-            {t('privacy.cookiesText')}
-          </p>
-          <h3 className="text-lg font-semibold mb-4">{t('privacy.compliance')}</h3>
-          <p className="mb-4">
-            {t('privacy.complianceText')}
-          </p>
-          <ul className="list-disc list-inside mb-4">
-            {t('privacy.points', { returnObjects: true }).map((point: string, index: number) => (
-              <li key={index}>{point}</li>
+        <div className="p-6 text-gray-700 space-y-4">
+          <p className="text-gray-600">{t('privacy.intro')}</p>
+          
+          <h3 className="text-lg font-semibold">{t('privacy.data')}</h3>
+          <p className="text-gray-600">{t('privacy.dataText')}</p>
+          
+          <h3 className="text-lg font-semibold">{t('privacy.usage')}</h3>
+          <p className="text-gray-600">{t('privacy.usageText')}</p>
+          <ul className="list-disc list-inside text-gray-600 space-y-1">
+            {t('privacy.usageList', { returnObjects: true }).map((item: string, i: number) => (
+              <li key={i}>{item}</li>
             ))}
           </ul>
-          <h3 className="text-lg font-semibold mb-4">{t('privacy.contact')}</h3>
-          <p>
-            {t('privacy.contactText')}
-          </p>
+          
+          <h3 className="text-lg font-semibold">{t('privacy.storage')}</h3>
+          <p className="text-gray-600">{t('privacy.storageText')}</p>
+          
+          <h3 className="text-lg font-semibold">{t('privacy.sharing')}</h3>
+          <p className="text-gray-600">{t('privacy.sharingText')}</p>
+          
+          <h3 className="text-lg font-semibold">{t('privacy.rights')}</h3>
+          <p className="text-gray-600">{t('privacy.rightsText')}</p>
+          <ul className="list-disc list-inside text-gray-600 space-y-1">
+            {t('privacy.rightsList', { returnObjects: true }).map((item: string, i: number) => (
+              <li key={i}>{item}</li>
+            ))}
+          </ul>
+          
+          <h3 className="text-lg font-semibold">{t('privacy.cookies')}</h3>
+          <p className="text-gray-600">{t('privacy.cookiesText')}</p>
+          
+          <h3 className="text-lg font-semibold">{t('privacy.contact')}</h3>
+          <p className="text-gray-600">{t('privacy.contactText')}</p>
         </div>
       </div>
     </div>

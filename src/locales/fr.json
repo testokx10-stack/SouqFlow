@@ -91,21 +91,36 @@
   },
   "privacy": {
     "title": "Politique de confidentialité",
-    "data": "Collecte et utilisation des données",
-    "dataText": "YouSouq s'engage à protéger la confidentialité de ses utilisateurs. Nous ne collectons ni ne stockons aucune donnée personnelle identifiable.",
-    "stored": "Les informations saisies lors de la publication d'annonces (nom, numéro WhatsApp) sont uniquement utilisées pour faciliter les contacts entre acheteurs et vendeurs. Ces données ne sont pas conservées sur nos serveurs après la transaction.",
-    "cookies": "Cookies et technologies de suivi",
-    "cookiesText": "Nous n'utilisons aucun cookie de suivi ou technologie permettant d'identifier les utilisateurs. Notre plateforme fonctionne sans collecte de données comportementales.",
-    "compliance": "Conformité réglementaire",
-    "complianceText": "Conformément à la loi 09-08 relative à la protection des personnes physiques à l'égard du traitement des données à caractère personnel (CNDP) et aux réglementations de l'Agence Nationale de Réglementation des Télécommunications (ANRT), nous garantissons que :",
-    "points": [
-      "Aucune donnée personnelle n'est collectée sans consentement explicite",
-      "Les données ne sont pas partagées avec des tiers",
-      "Les utilisateurs ont le droit de suppression de leurs données à tout moment",
-      "Nous ne vendons pas de données à des fins commerciales"
+    "intro": "Votre privacy est importante pour nous. Cette politique explique comment nous collectons et utilisons vos données.",
+    "data": "1. Données collectées",
+    "dataText": "Nous collectons uniquement les données que vous fournissez volontairement : votre numéro WhatsApp, nom, photos des produits et description des annonces.",
+    "usage": "2. Utilisation des données",
+    "usageText": "Vos données sont utilisées uniquement pour :",
+    "usageList": [
+      "Publier votre annonce sur YouSouq",
+      "Permettre aux acheteurs de vous contacter via WhatsApp",
+      "Afficher votre annonce sur la plateforme"
     ],
-    "contact": "Contact",
-    "contactText": "Pour toute question concernant cette politique, contactez-nous via les coordonnées disponibles sur la plateforme."
+    "storage": "3. Conservation des données",
+    "storageText": "Vos données sont conservées aussi longtemps que votre annonce est active. Vous pouvez demander la suppression de vos données à tout moment en nous contactant.",
+    "sharing": "4. Partage des données",
+    "sharingText": "Nous ne partageons jamais vos données personnelles avec des tiers. Vos coordonnées ne sont visibles que par les utilisateurs intéressés via WhatsApp.",
+    "rights": "5. Vos droits (CNDP)",
+    "rightsText": "Conformément à la loi 09-08, vous avez le droit de :",
+    "rightsList": [
+      "Accéder à vos données personnelles",
+      "Corriger vos données",
+      "Demander la suppression de vos données",
+      "Retirer votre consentement à tout moment"
+    ],
+    "cookies": "6. Cookies",
+    "cookiesText": "Nous n'utilisons pas de cookies de tracking. Le site utilise uniquement des cookies techniques nécessaires au fonctionnement.",
+    "contact": "7. Nous contacter",
+    "contactText": "Pour toute question ou demande concernant vos données, contactez-nous via WhatsApp ou email."
+  },
+  "form": {
+    "consent": "J'accepte que mes données (numéro WhatsApp, nom) soient utilisées pour publier mon annonce et permettre aux acheteurs de me contacter. Je comprends que je peux demander la suppression de mes données à tout moment.",
+    "consentError": "Vous devez accepter les conditions pour publier une annonce"
   },
   "terms": {
     "title": "Conditions d'utilisation",

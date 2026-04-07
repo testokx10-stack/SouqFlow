@@ -80,6 +80,8 @@ export default function ListingForm({ onSuccess, onBack }: ListingFormProps) {
   };
 
   const validateForm = (): boolean => {
+    const consent = (document.getElementById('consent') as HTMLInputElement)?.checked;
+    if (!consent) { setError(t('form.consentError')); return false; }
     if (!formData.title.trim()) { setError(t('form.errorTitle')); return false; }
     if (formData.price <= 0) { setError(t('form.errorPrice')); return false; }
     if (!formData.location) { setError(t('form.errorLocation')); return false; }
@@ -271,6 +273,18 @@ export default function ListingForm({ onSuccess, onBack }: ListingFormProps) {
         </div>
       </div>
 
+      <div className="flex items-start gap-3">
+        <input
+          type="checkbox"
+          id="consent"
+          required
+          className="mt-1 w-5 h-5 text-[#16A34A] border-gray-300 rounded focus:ring-[#16A34A]"
+        />
+        <label htmlFor="consent" className="text-xs text-gray-600 leading-relaxed">
+          {t('form.consent')}
+        </label>
+      </div>
+
       <button
         type="submit"
         disabled={isSubmitting}
@@ -279,7 +293,9 @@ export default function ListingForm({ onSuccess, onBack }: ListingFormProps) {
         {isSubmitting ? t('form.submitting') : t('form.submit')}
       </button>
 
-      <p className="text-xs text-center text-gray-400">{t('form.disclaimer')}</p>
+      <p className="text-xs text-center text-gray-400">
+        {t('form.disclaimer')} • <button type="button" onClick={() => window.open('/privacy', '_blank')} className="underline hover:text-gray-600">{t('footer.privacy')}</button>
+      </p>
     </form>
   );
 }

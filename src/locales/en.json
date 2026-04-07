@@ -91,21 +91,36 @@
   },
   "privacy": {
     "title": "Privacy Policy",
-    "data": "Data collection and use",
-    "dataText": "YouSouq is committed to protecting users' privacy. We do not collect or store any personally identifiable information.",
-    "stored": "The information entered when posting ads (name, WhatsApp) is only used to facilitate contact between buyers and sellers.",
-    "cookies": "Cookies and tracking",
-    "cookiesText": "We do not use any tracking cookies. Our platform operates without collecting behavioral data.",
-    "compliance": "Regulatory compliance",
-    "complianceText": "In accordance with data protection regulations, we guarantee:",
-    "points": [
-      "No personal data is collected without explicit consent",
-      "Data is not shared with third parties",
-      "Users have the right to delete their data at any time",
-      "We do not sell data for commercial purposes"
+    "intro": "Your privacy is important to us. This policy explains how we collect and use your data.",
+    "data": "1. Data collected",
+    "dataText": "We only collect data you voluntarily provide: your WhatsApp number, name, product photos and ad description.",
+    "usage": "2. Data usage",
+    "usageText": "Your data is used only for:",
+    "usageList": [
+      "Posting your ad on YouSouq",
+      "Allowing buyers to contact you via WhatsApp",
+      "Displaying your ad on the platform"
     ],
-    "contact": "Contact",
-    "contactText": "For any questions about this policy, contact us."
+    "storage": "3. Data retention",
+    "storageText": "Your data is retained as long as your ad is active. You can request deletion at any time.",
+    "sharing": "4. Data sharing",
+    "sharingText": "We never share your personal data with third parties. Your contact info is only visible to interested buyers via WhatsApp.",
+    "rights": "5. Your rights (CNDP)",
+    "rightsText": "Under Law 09-08, you have the right to:",
+    "rightsList": [
+      "Access your personal data",
+      "Correct your data",
+      "Request deletion of your data",
+      "Withdraw consent at any time"
+    ],
+    "cookies": "6. Cookies",
+    "cookiesText": "We do not use tracking cookies. The site only uses technical cookies necessary for operation.",
+    "contact": "7. Contact us",
+    "contactText": "For any questions about your data, contact us via WhatsApp or email."
+  },
+  "form": {
+    "consent": "I accept that my data (WhatsApp number, name) will be used to post my ad and allow buyers to contact me. I understand I can request deletion of my data at any time.",
+    "consentError": "You must accept the terms to post an ad"
   },
   "terms": {
     "title": "Terms of Service",
