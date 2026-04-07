@@ -383,7 +383,17 @@ function App() {
                 className="w-full px-4 py-3 border border-gray-200 rounded-lg mb-4"
               />
               <button
-                onClick={() => { if (sellerPhone) { setShowPhoneModal(false); setCurrentView('my-listings'); }}}
+                onClick={() => { 
+                  if (sellerPhone) {
+                    let cleaned = sellerPhone.replace(/\D/g, '');
+                    if (cleaned.startsWith('0')) cleaned = '+212' + cleaned.substring(1);
+                    else if (!cleaned.startsWith('+212')) cleaned = '+212' + cleaned;
+                    else cleaned = '+' + cleaned;
+                    setSellerPhone(cleaned);
+                    setShowPhoneModal(false); 
+                    setCurrentView('my-listings'); 
+                  }
+                }}
                 className="w-full bg-[#16A34A] text-white py-3 rounded-lg font-medium"
               >
                 {t('header.confirm')}

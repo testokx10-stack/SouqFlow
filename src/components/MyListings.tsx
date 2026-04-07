@@ -16,12 +16,21 @@ export default function MyListings({ sellerPhone }: MyListingsProps) {
   const [editForm, setEditForm] = useState({ title: '', price: 0, description: '' });
   const [deleteConfirm, setDeleteConfirm] = useState<string | null>(null);
 
+  const normalizePhone = (phone: string): string => {
+    let cleaned = phone.replace(/\D/g, '');
+    if (cleaned.startsWith('212')) return '+' + cleaned;
+    if (cleaned.startsWith('0')) return '+212' + cleaned.substring(1);
+    if (cleaned.length === 9) return '+212' + cleaned;
+    return '+212' + cleaned;
+  };
+
   const fetchMyListings = async () => {
     try {
+      const normalizedPhone = normalizePhone(sellerPhone);
       const { data, error } = await supabase
         .from('listings')
         .select('*')
-        .eq('seller_whatsapp', sellerPhone)
+        .eq('seller_whatsapp', normalizedPhone)
         .order('created_at', { ascending: false });
 
       if (error) throw error;
