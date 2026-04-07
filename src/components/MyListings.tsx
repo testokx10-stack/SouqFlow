@@ -45,22 +45,32 @@ export default function MyListings({ sellerPhone }: MyListingsProps) {
   };
 
   useEffect(() => {
-    const storedPin = localStorage.getItem(`yousouq_pin_${normalizePhone(sellerPhone)}`);
-    if (storedPin) setVerifiedPin(storedPin);
-    else setShowPinModal(true);
+    const normalizedPhone = normalizePhone(sellerPhone);
+    const storedPin = localStorage.getItem(`yousouq_pin_${normalizedPhone}`);
+    if (storedPin) {
+      setVerifiedPin(storedPin);
+    } else {
+      setShowPinModal(true);
+    }
     fetchMyListings();
   }, [sellerPhone]);
 
   const handleVerifyPin = (pin: string) => {
-    const storedPin = localStorage.getItem(`yousouq_pin_${normalizePhone(sellerPhone)}`);
+    const normalizedPhone = normalizePhone(sellerPhone);
+    const storedPin = localStorage.getItem(`yousouq_pin_${normalizedPhone}`);
     if (!storedPin) {
-      localStorage.setItem(`yousouq_pin_${normalizePhone(sellerPhone)}`, pin);
+      localStorage.setItem(`yousouq_pin_${normalizedPhone}`, pin);
       setVerifiedPin(pin);
     } else if (storedPin === pin) {
       setVerifiedPin(pin);
+    } else {
+      setError(t('myListings.wrongPin'));
+      return;
     }
     setShowPinModal(false);
   };
+
+  const [error, setError] = useState<string | null>(null);
 
   const handleMarkAsSold = async (id: string) => {
     if (!verifiedPin) { setShowPinModal(true); return; }
@@ -216,10 +226,11 @@ export default function MyListings({ sellerPhone }: MyListingsProps) {
             type="password"
             maxLength={4}
             value={pin}
-            onChange={(e) => setPin(e.target.value.replace(/\D/g, '').slice(0,4))}
+            onChange={(e) => { setPin(e.target.value.replace(/\D/g, '').slice(0,4)); setError(null); }}
             placeholder="••••"
             className="w-full px-4 py-3 border border-gray-200 rounded-lg mb-4 text-center text-2xl tracking-widest"
           />
+          {error && <p className="text-red-600 text-sm mb-4 text-center">{error}</p>}
           <button
             onClick={() => handleVerifyPin(pin)}
             disabled={pin.length !== 4}

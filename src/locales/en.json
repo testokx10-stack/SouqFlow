@@ -29,7 +29,8 @@
     "active": "Active",
     "enterPin": "Security PIN",
     "pinDesc": "Enter your 4-digit PIN to access your listings management",
-    "verify": "Verify"
+    "verify": "Verify",
+    "wrongPin": "Incorrect PIN"
   },
   "hero": {
     "title": "Buy and sell easily in Morocco 🇲🇦",
@@ -105,7 +106,10 @@
     "errorUpload": "Error uploading image",
     "errorSubmit": "Error posting ad",
     "consent": "I accept that my data (WhatsApp number, name) will be used to post my ad and allow buyers to contact me. I understand I can request deletion of my data at any time.",
-    "consentError": "You must accept the terms to post an ad"
+    "consentError": "You must accept the terms to post an ad",
+    "pin": "PIN code (4 digits)",
+    "pinDesc": "Create a PIN to manage your listings later",
+    "errorPin": "PIN must be 4 digits"
   },
   "terms": {
     "title": "Terms of Service",

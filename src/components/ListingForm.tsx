@@ -41,6 +41,7 @@ export default function ListingForm({ onSuccess, onBack }: ListingFormProps) {
   const [imagePreview, setImagePreview] = useState<string | null>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [pin, setPin] = useState('');
 
   const [formData, setFormData] = useState<FormData>({
     title: '',
@@ -82,6 +83,7 @@ export default function ListingForm({ onSuccess, onBack }: ListingFormProps) {
   const validateForm = (): boolean => {
     const consent = (document.getElementById('consent') as HTMLInputElement)?.checked;
     if (!consent) { setError(t('form.consentError')); return false; }
+    if (!pin || pin.length !== 4) { setError(t('form.errorPin')); return false; }
     if (!formData.title.trim()) { setError(t('form.errorTitle')); return false; }
     if (formData.price <= 0) { setError(t('form.errorPrice')); return false; }
     if (!formData.location) { setError(t('form.errorLocation')); return false; }
@@ -120,6 +122,9 @@ export default function ListingForm({ onSuccess, onBack }: ListingFormProps) {
         seller_whatsapp: formatWhatsAppNumber(formData.seller_whatsapp),
         image_url: imageUrl
       });
+
+      const normalizedPhone = formatWhatsAppNumber(formData.seller_whatsapp);
+      localStorage.setItem(`yousouq_pin_${normalizedPhone}`, pin);
 
       setFormData({
         title: '', description: '', price: 0, condition: 'bon', category: 'other',
@@ -283,6 +288,22 @@ export default function ListingForm({ onSuccess, onBack }: ListingFormProps) {
         <label htmlFor="consent" className="text-xs text-gray-600 leading-relaxed">
           {t('form.consent')}
         </label>
+      </div>
+
+      {/* PIN Code */}
+      <div>
+        <label className="text-sm font-medium text-gray-700 mb-2 block">
+          {t('form.pin')} 🔒
+        </label>
+        <input
+          type="password"
+          maxLength={4}
+          value={pin}
+          onChange={(e) => setPin(e.target.value.replace(/\D/g, '').slice(0, 4))}
+          placeholder="••••"
+          className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-[#16A34A] outline-none text-center text-2xl tracking-widest"
+        />
+        <p className="text-xs text-gray-500 mt-1">{t('form.pinDesc')}</p>
       </div>
 
       <button
