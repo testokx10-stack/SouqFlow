@@ -67,19 +67,19 @@ function App() {
   return (
     <>
       <Helmet>
-        <title>Acheter et vendre au Maroc | YouSouq</title>
-        <meta name="description" content="Vendez vos produits d'occasion au Maroc. Publiez en quelques secondes avec WhatsApp. 100% gratuit, sans inscription." />
-        <meta name="keywords" content="vendre occasion maroc, marketplace maroc, souq maroc, achat vente maroc, avito maroc" />
-        <meta property="og:title" content="Acheter et vendre au Maroc | YouSouq" />
-        <meta property="og:description" content="Vendez vos produits d'occasion au Maroc. Publiez en quelques secondes avec WhatsApp." />
+        <title>{t('meta.title')}</title>
+        <meta name="description" content={t('meta.description')} />
+        <meta name="keywords" content={t('meta.keywords')} />
+        <meta property="og:title" content={t('meta.title')} />
+        <meta property="og:description" content={t('meta.description')} />
         <meta property="og:image" content="https://yousouq.vercel.app/logo.png" />
         <meta property="og:image:width" content="200" />
         <meta property="og:image:height" content="200" />
         <meta property="og:url" content="https://yousouq.vercel.app" />
         <meta property="og:type" content="website" />
         <meta name="twitter:card" content="summary" />
-        <meta name="twitter:title" content="Acheter et vendre au Maroc | YouSouq" />
-        <meta name="twitter:description" content="Vendez vos produits d'occasion au Maroc. Publiez en quelques secondes avec WhatsApp." />
+        <meta name="twitter:title" content={t('meta.title')} />
+        <meta name="twitter:description" content={t('meta.description')} />
         <meta name="twitter:image" content="https://yousouq.vercel.app/logo.png" />
         <script type="application/ld+json">
           {JSON.stringify({
@@ -87,7 +87,7 @@ function App() {
             "@type": "WebSite",
             "name": "YouSouq",
             "url": "https://yousouq.vercel.app",
-            "description": "Marketplace pour vendre et acheter des produits d'occasion au Maroc",
+            "description": t('meta.description'),
             "potentialAction": {
               "@type": "SearchAction",
               "target": "https://yousouq.vercel.app?q={search_term_string}",
@@ -152,8 +152,8 @@ function App() {
             <div className="bg-green-50 border-2 border-green-500 text-green-800 px-6 py-4 rounded-lg flex items-center gap-3 shadow-md animate-fade-in">
               <CheckCircle className="w-6 h-6 text-green-600 flex-shrink-0" />
               <div>
-                <p className="font-bold">Annonce publiée avec succès !</p>
-                <p className="text-sm">Votre produit est maintenant visible par tous les acheteurs.</p>
+                <p className="font-bold">{t('form.success')}</p>
+                <p className="text-sm">{t('form.successDesc')}</p>
               </div>
             </div>
           </div>
@@ -174,23 +174,23 @@ function App() {
               <div className="absolute inset-0 bg-gradient-to-br from-[#16A34A]/90 to-green-700/90"></div>
               <div className="max-w-3xl mx-auto text-center relative z-10">
                 <h1 className="text-3xl md:text-4xl font-bold text-white mb-4">
-                  Vendez et achetez facilement au Maroc 🇲🇦
+                  {t('hero.title')}
                 </h1>
                 <p className="text-lg text-green-100 mb-8">
-                  Publiez votre annonce en moins de 30 secondes. Sans compte. 100% gratuit.
+                  {t('hero.subtitle')}
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center">
                   <button
                     onClick={() => setCurrentView('create')}
                     className="bg-[#F97316] hover:bg-orange-600 text-white font-bold py-3 px-8 rounded-xl text-lg transition-all shadow-lg hover:shadow-xl transform hover:scale-105"
                   >
-                    + Publier une annonce
+                    {t('hero.ctaPrimary')}
                   </button>
                   <button
                     onClick={() => document.getElementById('listings')?.scrollIntoView({ behavior: 'smooth' })}
                     className="bg-white/20 hover:bg-white/30 text-white font-semibold py-3 px-8 rounded-xl text-lg transition-all border-2 border-white"
                   >
-                    Voir les annonces
+                    {t('hero.ctaSecondary')}
                   </button>
                 </div>
               </div>
@@ -201,15 +201,15 @@ function App() {
               <div className="max-w-7xl mx-auto flex flex-wrap justify-center gap-8 text-sm">
                 <div className="flex items-center gap-2 text-[#16A34A]">
                   <CheckCircle className="w-5 h-5" />
-                  <span className="font-semibold">100% gratuit</span>
+                  <span className="font-semibold">{t('trust.free')}</span>
                 </div>
                 <div className="flex items-center gap-2 text-[#16A34A]">
                   <CheckCircle className="w-5 h-5" />
-                  <span className="font-semibold">Sans inscription</span>
+                  <span className="font-semibold">{t('trust.noRegister')}</span>
                 </div>
                 <div className="flex items-center gap-2 text-[#16A34A]">
                   <CheckCircle className="w-5 h-5" />
-                  <span className="font-semibold">Contact direct via WhatsApp</span>
+                  <span className="font-semibold">{t('trust.whatsapp')}</span>
                 </div>
               </div>
             </section>
@@ -221,7 +221,7 @@ function App() {
                   <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
                   <input
                     type="text"
-                    placeholder="Que cherchez-vous ? (voiture, iPhone, vêtements...)"
+                    placeholder={t('search.placeholder')}
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
                     className="w-full pl-12 pr-4 py-4 border border-gray-200 rounded-xl focus:ring-2 focus:ring-[#16A34A] focus:border-transparent outline-none text-lg shadow-sm"
@@ -245,7 +245,7 @@ function App() {
                       }`}
                     >
                       <div className="text-2xl mb-1">{cat.icon}</div>
-                      <div className="text-sm font-medium">{cat.label}</div>
+                      <div className="text-sm font-medium">{t(`categories.${cat.id}`)}</div>
                     </button>
                   ))}
                 </div>
@@ -257,15 +257,15 @@ function App() {
               <div className="max-w-7xl mx-auto flex justify-center gap-12 text-center">
                 <div>
                   <div className="text-2xl font-bold text-[#16A34A]">{stats.listings}</div>
-                  <div className="text-gray-600 text-sm">Annonces actives</div>
+                  <div className="text-gray-600 text-sm">{t('stats.listings')}</div>
                 </div>
                 <div>
                   <div className="text-2xl font-bold text-[#16A34A]">{stats.users}</div>
-                  <div className="text-gray-600 text-sm">Vendeurs</div>
+                  <div className="text-gray-600 text-sm">{t('stats.sellers')}</div>
                 </div>
                 <div>
                   <div className="text-2xl font-bold text-[#F97316]">100%</div>
-                  <div className="text-gray-600 text-sm">Gratuit</div>
+                  <div className="text-gray-600 text-sm">{t('stats.free')}</div>
                 </div>
               </div>
             </section>
@@ -288,7 +288,7 @@ function App() {
           <button
             onClick={() => setCurrentView('create')}
             className="fixed bottom-6 right-6 bg-[#F97316] hover:bg-orange-600 text-white p-5 rounded-full shadow-lg transition-all z-50 hover:scale-110"
-            aria-label="Publier une annonce"
+            aria-label={t('header.sell')}
           >
             <Plus className="w-7 h-7" />
           </button>
@@ -298,14 +298,14 @@ function App() {
         <footer className="bg-white border-t mt-8">
           <div className="max-w-7xl mx-auto px-4 py-8">
             <div className="text-center text-gray-600">
-              <p className="font-semibold mb-2">YouSouq - Marketplace Maroc</p>
-              <p className="text-sm mb-4">Vendez et achetez facilement au Maroc</p>
+              <p className="font-semibold mb-2">{t('footer.about')}</p>
+              <p className="text-sm mb-4">{t('footer.description')}</p>
               <div className="flex justify-center gap-6 text-sm mb-4">
-                <button onClick={() => setShowPrivacy(true)} className="hover:text-[#16A34A] underline">Politique de confidentialité</button>
-                <button onClick={() => setShowTerms(true)} className="hover:text-[#16A34A] underline">Conditions d'utilisation</button>
+                <button onClick={() => setShowPrivacy(true)} className="hover:text-[#16A34A] underline">{t('footer.privacy')}</button>
+                <button onClick={() => setShowTerms(true)} className="hover:text-[#16A34A] underline">{t('footer.terms')}</button>
               </div>
               <p className="text-xs text-gray-400">
-                © 2024 YouSouq. Tous droits réservés.
+                {t('footer.copyright')}
               </p>
             </div>
           </div>

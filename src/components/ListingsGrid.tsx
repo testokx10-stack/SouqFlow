@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { supabase } from '../lib/supabase';
 import type { Listing } from '../types/listing';
 import ListingCard from './ListingCard';
@@ -10,6 +11,7 @@ interface ListingsGridProps {
 }
 
 export default function ListingsGrid({ searchQuery = '', selectedCategory = 'all' }: ListingsGridProps) {
+  const { t } = useTranslation();
   const [allListings, setAllListings] = useState<Listing[]>([]);
   const [listings, setListings] = useState<Listing[]>([]);
   const [loading, setLoading] = useState(true);
@@ -101,25 +103,23 @@ export default function ListingsGrid({ searchQuery = '', selectedCategory = 'all
   return (
     <div>
       {!showEmptyState && (
-        <p className="text-gray-600 mb-4">{listings.length} résultat{listings.length !== 1 ? 's' : ''}</p>
+        <p className="text-gray-600 mb-4">{listings.length} {t('listings.products')}</p>
       )}
 
       {showEmptyState ? (
         <div className="text-center py-16 bg-white rounded-xl shadow-sm">
           <Package className="w-16 h-16 text-gray-300 mx-auto mb-4" />
           <h3 className="text-xl font-semibold text-gray-700 mb-2">
-            Aucune annonce trouvée
+            {searchQuery || selectedCategory !== 'all' ? t('listings.noResults') : t('listings.empty')}
           </h3>
           <p className="text-gray-500 mb-4">
-            {searchQuery || selectedCategory !== 'all'
-              ? 'Essayez avec d\'autres critères de recherche'
-              : 'Soyez le premier à publier une annonce !'}
+            {searchQuery || selectedCategory !== 'all' ? t('listings.noResultsDesc') : t('listings.emptyDesc')}
           </p>
           <button
             onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
             className="px-6 py-2 bg-[#16A34A] text-white rounded-lg font-medium hover:bg-green-700 transition-colors"
           >
-            + Publier une annonce
+            {t('hero.ctaPrimary')}
           </button>
         </div>
       ) : (

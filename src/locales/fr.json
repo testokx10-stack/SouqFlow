@@ -1,73 +1,72 @@
 {
+  "meta": {
+    "title": "Acheter et vendre au Maroc | YouSouq",
+    "description": "Vendez vos produits d'occasion au Maroc. Publiez en quelques secondes avec WhatsApp. 100% gratuit, sans inscription.",
+    "keywords": "vendre occasion maroc, marketplace maroc, souq maroc, achat vente maroc, avito maroc"
+  },
   "header": {
-    "title": "YouSouq - Acheter & Vendre Used Items Maroc",
     "sell": "Vendre",
     "ads": "Annonces"
   },
   "hero": {
-    "title": "Vendez vos produits d'occasion",
-    "subtitle": "Postez une annonce en secondes avec WhatsApp",
-    "button": "🚀 Vendre maintenant - 100% Gratuit"
+    "title": "Vendez et achetez facilement au Maroc 🇲🇦",
+    "subtitle": "Publiez votre annonce en moins de 30 secondes. Sans compte. 100% gratuit.",
+    "ctaPrimary": "+ Publier une annonce",
+    "ctaSecondary": "Voir les annonces"
   },
-  "features": {
-    "title": "Pourquoi choisir YouSouq ?",
-    "instant": "Publication instantanée",
-    "instantDesc": "Postez votre annonce en moins de 30 secondes",
-    "secure": "100% Sécurisé",
-    "secureDesc": "Paiement en main propre, pas de risque",
-    "community": "Communauté active",
-    "communityDesc": "Des milliers d'acheteurs au Maroc",
-    "fast": "Vente rapide",
-    "fastDesc": "Contact direct via WhatsApp"
+  "trust": {
+    "free": "100% gratuit",
+    "noRegister": "Sans inscription",
+    "whatsapp": "Contact direct via WhatsApp"
+  },
+  "search": {
+    "placeholder": "Que cherchez-vous ? (voiture, iPhone, vêtements...)"
+  },
+  "categories": {
+    "cars": "Voitures",
+    "phones": "Téléphones",
+    "electronics": "Électronique",
+    "clothes": "Vêtements",
+    "home": "Maison",
+    "other": "Autres"
   },
   "stats": {
-    "title": "Rejoignez notre communauté active",
-    "subtitle": "Commencez à vendre vos produits d'occasion et gagnez de l'argent facilement",
     "listings": "Annonces actives",
-    "users": "Vendeurs actifs",
+    "sellers": "Vendeurs",
     "free": "Gratuit"
   },
   "listings": {
     "recent": "Annonces récentes",
-    "products": "produit(s) disponible(s)",
-    "loading": "Chargement des annonces...",
+    "products": "résultat(s)",
+    "noResults": "Aucune annonce trouvée",
+    "noResultsDesc": "Essayez avec d'autres critères de recherche",
     "empty": "Aucune annonce pour le moment",
-    "emptyDesc": "Soyez le premier à publier une annonce !",
-    "all": "Toutes",
-    "electronics": "Électronique",
-    "cars": "Véhicules",
-    "clothes": "Vêtements",
-    "home": "Maison & Jardin",
-    "sports": "Sports & Loisirs",
-    "books": "Livres",
-    "other": "Autre"
+    "emptyDesc": "Soyez le premier à publier une annonce !"
   },
   "form": {
     "title": "Publier une annonce",
-    "free": "100% Gratuit • Vente rapide",
+    "free": "100% gratuit",
     "image": "Photo du produit",
-    "name": "Titre du produit *",
-    "description": "Description *",
+    "name": "Titre de votre annonce *",
+    "description": "Description (optionnel)",
     "price": "Prix (DH) *",
     "condition": "État *",
     "category": "Catégorie *",
     "location": "Ville *",
     "contact": "Vos coordonnées",
-    "fullname": "Nom complet *",
-    "whatsapp": "Numéro WhatsApp *",
-    "whatsappDesc": "Les acheteurs vous contacteront via WhatsApp",
+    "fullname": "Votre nom *",
+    "whatsapp": "WhatsApp *",
     "submit": "🚀 Publier mon annonce",
-    "disclaimer": "En publiant, vous acceptez que votre annonce soit visible publiquement",
     "success": "Annonce publiée avec succès !",
     "successDesc": "Votre produit est maintenant visible par tous les acheteurs.",
-    "back": "Retour aux annonces"
+    "back": "Retour"
   },
   "footer": {
-    "about": "YouSouq - Marketplace marocaine",
-    "description": "Vendez et achetez en toute simplicité",
+    "about": "YouSouq - Marketplace Maroc",
+    "description": "Vendez et achetez facilement au Maroc",
     "privacy": "Politique de confidentialité",
     "terms": "Conditions d'utilisation",
-    "copyright": "© 2026 YouSouq. Tous droits réservés."
+    "copyright": "© 2024 YouSouq. Tous droits réservés."
   },
   "privacy": {
     "title": "Politique de confidentialité",
