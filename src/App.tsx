@@ -1,14 +1,15 @@
 import { useState, useEffect } from 'react';
-import { Plus, Home, Search, MessageCircle, CheckCircle } from 'lucide-react';
+import { Plus, Home, Search, MessageCircle, CheckCircle, User } from 'lucide-react';
 import { Helmet } from 'react-helmet-async';
 import { useTranslation } from 'react-i18next';
 import { supabase } from './lib/supabase';
 import ListingForm from './components/ListingForm';
 import ListingsGrid from './components/ListingsGrid';
+import MyListings from './components/MyListings';
 import PrivacyModal from './components/PrivacyModal';
 import TermsModal from './components/TermsModal';
 
-type View = 'home' | 'create';
+type View = 'home' | 'create' | 'my-listings';
 
 const CATEGORIES = [
   { id: 'cars', icon: '🚗', label: 'Voitures' },
@@ -28,6 +29,8 @@ function App() {
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
   const [stats, setStats] = useState({ listings: 0, users: 0 });
+  const [sellerPhone, setSellerPhone] = useState<string>('');
+  const [showPhoneModal, setShowPhoneModal] = useState(false);
 
   const fetchStats = async () => {
     try {
@@ -106,25 +109,20 @@ function App() {
                 <img src="/logo.png" alt="YouSouq" className="h-12 w-auto" />
               </div>
 
-              <div className="flex items-center gap-3">
-                <div className="flex gap-1">
-                  <button
-                    onClick={() => i18n.changeLanguage('fr')}
-                    className={`px-2 py-1 rounded text-sm font-medium ${
-                      i18n.language === 'fr' ? 'bg-[#16A34A] text-white' : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
-                    }`}
-                  >
-                    FR
-                  </button>
-                  <button
-                    onClick={() => i18n.changeLanguage('ar')}
-                    className={`px-2 py-1 rounded text-sm font-medium ${
-                      i18n.language === 'ar' ? 'bg-[#16A34A] text-white' : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
-                    }`}
-                  >
-                    AR
-                  </button>
-                </div>
+                <div className="flex items-center gap-2">
+                <button
+                  onClick={() => {
+                    if (!sellerPhone) {
+                      setShowPhoneModal(true);
+                    } else {
+                      setCurrentView('my-listings');
+                    }
+                  }}
+                  className="bg-gray-100 hover:bg-gray-200 text-gray-700 px-3 py-2 rounded-lg font-medium flex items-center gap-2 transition-colors text-sm"
+                >
+                  <User className="w-4 h-4" />
+                  {t('header.myAds')}
+                </button>
                 <button
                   onClick={() => setCurrentView(currentView === 'home' ? 'create' : 'home')}
                   className="bg-[#16A34A] hover:bg-green-700 text-white px-4 py-2 rounded-lg font-medium flex items-center gap-2 transition-colors shadow-sm text-sm"
@@ -297,9 +295,22 @@ function App() {
               </div>
             </section>
           </>
-        ) : (
+        ) : currentView === 'create' ? (
           <main className="max-w-2xl mx-auto px-4 py-8">
             <ListingForm onSuccess={handleListingSuccess} onBack={() => setCurrentView('home')} />
+          </main>
+        ) : (
+          <main className="max-w-2xl mx-auto px-4 py-8">
+            <div className="flex items-center justify-between mb-6">
+              <button onClick={() => setCurrentView('home')} className="flex items-center gap-2 text-gray-600 hover:text-gray-800">
+                <Home className="w-5 h-5" />
+                {t('header.ads')}
+              </button>
+              <button onClick={() => setSellerPhone('')} className="text-sm text-gray-500 hover:text-gray-700">
+                {t('header.logout')}
+              </button>
+            </div>
+            <MyListings sellerPhone={sellerPhone} />
           </main>
         )}
 
@@ -333,6 +344,29 @@ function App() {
 
         <PrivacyModal isOpen={showPrivacy} onClose={() => setShowPrivacy(false)} />
         <TermsModal isOpen={showTerms} onClose={() => setShowTerms(false)} />
+
+        {/* Phone Modal for Seller */}
+        {showPhoneModal && (
+          <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
+            <div className="bg-white rounded-xl p-6 max-w-sm w-full">
+              <h3 className="text-xl font-bold mb-4">{t('header.enterPhone')}</h3>
+              <p className="text-gray-600 text-sm mb-4">{t('header.enterPhoneDesc')}</p>
+              <input
+                type="tel"
+                value={sellerPhone}
+                onChange={(e) => setSellerPhone(e.target.value)}
+                placeholder="06XX XXX XXX"
+                className="w-full px-4 py-3 border border-gray-200 rounded-lg mb-4"
+              />
+              <button
+                onClick={() => { if (sellerPhone) { setShowPhoneModal(false); setCurrentView('my-listings'); }}}
+                className="w-full bg-[#16A34A] text-white py-3 rounded-lg font-medium"
+              >
+                {t('header.confirm')}
+              </button>
+            </div>
+          </div>
+        )}
       </div>
     </>
   );

@@ -6,7 +6,12 @@
   },
   "header": {
     "sell": "Sell",
-    "ads": "Ads"
+    "ads": "Ads",
+    "myAds": "My ads",
+    "logout": "Change number",
+    "enterPhone": "Enter your WhatsApp number",
+    "enterPhoneDesc": "To view and manage your listings",
+    "confirm": "Confirm"
   },
   "hero": {
     "title": "Buy and sell easily in Morocco 🇲🇦",

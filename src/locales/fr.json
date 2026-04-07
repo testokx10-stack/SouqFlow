@@ -6,7 +6,12 @@
   },
   "header": {
     "sell": "Vendre",
-    "ads": "Annonces"
+    "ads": "Annonces",
+    "myAds": "Mes annonces",
+    "logout": "Changer de numéro",
+    "enterPhone": "Entrez votre numéro WhatsApp",
+    "enterPhoneDesc": "Pour voir et gérer vos annonces",
+    "confirm": "Confirmer"
   },
   "hero": {
     "title": "Vendez et achetez facilement au Maroc 🇲🇦",
