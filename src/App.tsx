@@ -162,21 +162,13 @@ function App() {
         {currentView === 'home' ? (
           <>
             {/* Hero Section */}
-            <section 
-              className="bg-gradient-to-br from-[#16A34A] to-green-700 py-16 px-4 relative overflow-hidden"
-              style={{
-                backgroundImage: 'url(/logo.png)',
-                backgroundSize: 'contain',
-                backgroundPosition: 'center',
-                backgroundRepeat: 'no-repeat',
-              }}
-            >
-              <div className="absolute inset-0 bg-gradient-to-br from-[#16A34A]/90 to-green-700/90"></div>
-              <div className="max-w-3xl mx-auto text-center relative z-10">
-                <h1 className="text-3xl md:text-4xl font-bold text-white mb-4">
+            <section className="py-8 px-4">
+              <div className="max-w-3xl mx-auto text-center">
+                <img src="/logo.png" alt="YouSouq" className="h-24 md:h-32 w-auto mx-auto mb-6" />
+                <h1 className="text-3xl md:text-4xl font-bold text-gray-800 mb-4">
                   {t('hero.title')}
                 </h1>
-                <p className="text-lg text-green-100 mb-8">
+                <p className="text-lg text-gray-600 mb-8">
                   {t('hero.subtitle')}
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center">
@@ -188,7 +180,7 @@ function App() {
                   </button>
                   <button
                     onClick={() => document.getElementById('listings')?.scrollIntoView({ behavior: 'smooth' })}
-                    className="bg-white/20 hover:bg-white/30 text-white font-semibold py-3 px-8 rounded-xl text-lg transition-all border-2 border-white"
+                    className="bg-gray-100 hover:bg-gray-200 text-gray-800 font-semibold py-3 px-8 rounded-xl text-lg transition-all border-2 border-gray-300"
                   >
                     {t('hero.ctaSecondary')}
                   </button>
