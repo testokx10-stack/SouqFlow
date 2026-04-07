@@ -6,7 +6,10 @@ import type { ProductCondition, ProductCategory } from '../types/listing';
 
 const MOROCCAN_CITIES = [
   'Casablanca', 'Rabat', 'Fès', 'Marrakech', 'Tanger', 'Agadir', 'Meknès',
-  'Oujda', 'Kenitra', 'Tétouan', 'Salé', 'Mohammedia', 'El Jadida', 'Nador'
+  'Oujda', 'Kenitra', 'Tétouan', 'Salé', 'Mohammedia', 'El Jadida', 'Nador',
+  'Khouribga', 'Beni Mellal', 'Azrou', 'Ifrane', 'Essaouira', 'Rabat-Salé',
+  'Taza', 'Guercif', 'Errachidia', 'Ouarzazate', 'Zagora', 'Al Hoceïma',
+  'Laâyoune', 'Dakhla', 'Smara', 'Guelmim', 'Tan-Tan', 'Larache', 'Ksar El Kébir'
 ];
 
 const CATEGORIES = [

@@ -29,7 +29,13 @@ function App() {
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
   const [selectedCity, setSelectedCity] = useState<string>('all');
-  const [cities, setCities] = useState<string[]>([]);
+  const [cities] = useState<string[]>([
+    'Casablanca', 'Rabat', 'Fès', 'Marrakech', 'Tanger', 'Agadir', 'Meknès',
+    'Oujda', 'Kenitra', 'Tétouan', 'Salé', 'Mohammedia', 'El Jadida', 'Nador',
+    'Khouribga', 'Beni Mellal', 'Azrou', 'Ifrane', 'Essaouira', 'Rabat-Salé',
+    'Taza', 'Guercif', 'Errachidia', 'Ouarzazate', 'Zagora', 'Al Hoceïma',
+    'Laâyoune', 'Dakhla', 'Smara', 'Guelmim', 'Tan-Tan', 'Larache', 'Ksar El Kébir'
+  ]);
   const [stats, setStats] = useState({ listings: 0, users: 0 });
   const [sellerPhone, setSellerPhone] = useState<string>('');
   const [showPhoneModal, setShowPhoneModal] = useState(false);
@@ -52,14 +58,6 @@ function App() {
         listings: listingsCount || 0,
         users: uniqueUsers || 0
       });
-
-      const { data: locationData } = await supabase
-        .from('listings')
-        .select('location')
-        .eq('status', 'active');
-      
-      const uniqueCities = Array.from(new Set(locationData?.map(l => l.location).filter(Boolean))).sort();
-      setCities(uniqueCities);
     } catch (error) {
       console.error('Error fetching stats:', error);
     }
