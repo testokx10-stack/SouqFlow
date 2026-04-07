@@ -34,6 +34,7 @@ CREATE TABLE IF NOT EXISTS listings (
   description text NOT NULL,
   price numeric NOT NULL CHECK (price >= 0),
   condition text NOT NULL CHECK (condition IN ('neuf', 'tres_bon', 'bon', 'use')),
+  category text DEFAULT 'other',
   location text NOT NULL,
   seller_name text NOT NULL,
   seller_whatsapp text NOT NULL,
@@ -64,3 +65,4 @@ CREATE POLICY "Sellers can update their own listings"
 CREATE INDEX IF NOT EXISTS idx_listings_status ON listings(status);
 CREATE INDEX IF NOT EXISTS idx_listings_created_at ON listings(created_at DESC);
 CREATE INDEX IF NOT EXISTS idx_listings_location ON listings(location);
+CREATE INDEX IF NOT EXISTS idx_listings_category ON listings(category);

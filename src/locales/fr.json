@@ -1,0 +1,111 @@
+{
+  "header": {
+    "title": "YouSouq - Acheter & Vendre Used Items Maroc",
+    "sell": "Vendre",
+    "ads": "Annonces"
+  },
+  "hero": {
+    "title": "Vendez vos produits d'occasion",
+    "subtitle": "Postez une annonce en secondes avec WhatsApp",
+    "button": "🚀 Vendre maintenant - 100% Gratuit"
+  },
+  "features": {
+    "title": "Pourquoi choisir YouSouq ?",
+    "instant": "Publication instantanée",
+    "instantDesc": "Postez votre annonce en moins de 30 secondes",
+    "secure": "100% Sécurisé",
+    "secureDesc": "Paiement en main propre, pas de risque",
+    "community": "Communauté active",
+    "communityDesc": "Des milliers d'acheteurs au Maroc",
+    "fast": "Vente rapide",
+    "fastDesc": "Contact direct via WhatsApp"
+  },
+  "stats": {
+    "title": "Rejoignez notre communauté active",
+    "subtitle": "Commencez à vendre vos produits d'occasion et gagnez de l'argent facilement",
+    "listings": "Annonces actives",
+    "users": "Vendeurs actifs",
+    "free": "Gratuit"
+  },
+  "listings": {
+    "recent": "Annonces récentes",
+    "products": "produit(s) disponible(s)",
+    "loading": "Chargement des annonces...",
+    "empty": "Aucune annonce pour le moment",
+    "emptyDesc": "Soyez le premier à publier une annonce !",
+    "all": "Toutes",
+    "electronics": "Électronique",
+    "cars": "Véhicules",
+    "clothes": "Vêtements",
+    "home": "Maison & Jardin",
+    "sports": "Sports & Loisirs",
+    "books": "Livres",
+    "other": "Autre"
+  },
+  "form": {
+    "title": "Publier une annonce",
+    "free": "100% Gratuit • Vente rapide",
+    "image": "Photo du produit",
+    "name": "Titre du produit *",
+    "description": "Description *",
+    "price": "Prix (DH) *",
+    "condition": "État *",
+    "category": "Catégorie *",
+    "location": "Ville *",
+    "contact": "Vos coordonnées",
+    "fullname": "Nom complet *",
+    "whatsapp": "Numéro WhatsApp *",
+    "whatsappDesc": "Les acheteurs vous contacteront via WhatsApp",
+    "submit": "🚀 Publier mon annonce",
+    "disclaimer": "En publiant, vous acceptez que votre annonce soit visible publiquement",
+    "success": "Annonce publiée avec succès !",
+    "successDesc": "Votre produit est maintenant visible par tous les acheteurs.",
+    "back": "Retour aux annonces"
+  },
+  "footer": {
+    "about": "YouSouq - Marketplace marocaine",
+    "description": "Vendez et achetez en toute simplicité",
+    "privacy": "Politique de confidentialité",
+    "terms": "Conditions d'utilisation",
+    "copyright": "© 2026 YouSouq. Tous droits réservés."
+  },
+  "privacy": {
+    "title": "Politique de confidentialité",
+    "data": "Collecte et utilisation des données",
+    "dataText": "YouSouq s'engage à protéger la confidentialité de ses utilisateurs. Nous ne collectons ni ne stockons aucune donnée personnelle identifiable.",
+    "stored": "Les informations saisies lors de la publication d'annonces (nom, numéro WhatsApp) sont uniquement utilisées pour faciliter les contacts entre acheteurs et vendeurs. Ces données ne sont pas conservées sur nos serveurs après la transaction.",
+    "cookies": "Cookies et technologies de suivi",
+    "cookiesText": "Nous n'utilisons aucun cookie de suivi ou technologie permettant d'identifier les utilisateurs. Notre plateforme fonctionne sans collecte de données comportementales.",
+    "compliance": "Conformité réglementaire",
+    "complianceText": "Conformément à la loi 09-08 relative à la protection des personnes physiques à l'égard du traitement des données à caractère personnel (CNDP) et aux réglementations de l'Agence Nationale de Réglementation des Télécommunications (ANRT), nous garantissons que :",
+    "points": [
+      "Aucune donnée personnelle n'est collectée sans consentement explicite",
+      "Les données ne sont pas partagées avec des tiers",
+      "Les utilisateurs ont le droit de suppression de leurs données à tout moment",
+      "Nous ne vendons pas de données à des fins commerciales"
+    ],
+    "contact": "Contact",
+    "contactText": "Pour toute question concernant cette politique, contactez-nous via les coordonnées disponibles sur la plateforme."
+  },
+  "terms": {
+    "title": "Conditions d'utilisation",
+    "acceptance": "Acceptation des conditions",
+    "acceptanceText": "En utilisant YouSouq, vous acceptez ces conditions d'utilisation. Si vous n'acceptez pas ces conditions, veuillez ne pas utiliser notre plateforme.",
+    "service": "Description du service",
+    "serviceText": "YouSouq est une plateforme de marketplace permettant aux utilisateurs de publier et consulter des annonces de produits d'occasion au Maroc. Le service est fourni gratuitement.",
+    "responsibilities": "Responsabilités des utilisateurs",
+    "responsibilitiesText": "Les utilisateurs s'engagent à :",
+    "responsibilitiesPoints": [
+      "Fournir des informations exactes et vérifiables",
+      "Ne pas publier de contenu illégal, offensant ou frauduleux",
+      "Respecter les droits de propriété intellectuelle",
+      "Utiliser WhatsApp uniquement pour des communications légitimes"
+    ],
+    "liability": "Responsabilité de la plateforme",
+    "liabilityText": "YouSouq agit en tant qu'intermédiaire neutre. Nous ne sommes pas responsables des transactions entre utilisateurs ni de la qualité des produits annoncés. Les utilisateurs sont encouragés à vérifier les produits avant achat.",
+    "modification": "Modification des conditions",
+    "modificationText": "Nous nous réservons le droit de modifier ces conditions à tout moment. Les modifications prendront effet immédiatement après publication.",
+    "law": "Droit applicable",
+    "lawText": "Ces conditions sont régies par le droit marocain. Tout litige sera soumis aux juridictions compétentes du Maroc."
+  }
+}

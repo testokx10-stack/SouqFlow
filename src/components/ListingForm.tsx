@@ -1,13 +1,31 @@
 import { useState } from 'react';
-import { MapPin, Tag, FileText, DollarSign, User, Phone, Package } from 'lucide-react';
+import { MapPin, Tag, FileText, DollarSign, User, Phone, Package, ArrowLeft } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 import ImageUpload from './ImageUpload';
 import { supabase } from '../lib/supabase';
-import type { CreateListingData, ProductCondition } from '../types/listing';
+import type { CreateListingData, ProductCondition, ProductCategory } from '../types/listing';
 
 const MOROCCAN_CITIES = [
   'Casablanca', 'Rabat', 'Fès', 'Marrakech', 'Tanger', 'Agadir', 'Meknès',
   'Oujda', 'Kenitra', 'Tétouan', 'Salé', 'Mohammedia', 'El Jadida', 'Nador'
 ];
+
+const CITY_COORDINATES: Record<string, { lat: number; lng: number }> = {
+  'Casablanca': { lat: 33.5731, lng: -7.5898 },
+  'Rabat': { lat: 34.0209, lng: -6.8416 },
+  'Fès': { lat: 34.0181, lng: -5.0078 },
+  'Marrakech': { lat: 31.6295, lng: -7.9811 },
+  'Tanger': { lat: 35.7595, lng: -5.8340 },
+  'Agadir': { lat: 30.4278, lng: -9.5981 },
+  'Meknès': { lat: 33.8938, lng: -5.5473 },
+  'Oujda': { lat: 34.6819, lng: -1.9176 },
+  'Kenitra': { lat: 34.2591, lng: -6.5818 },
+  'Tétouan': { lat: 35.5785, lng: -5.3681 },
+  'Salé': { lat: 34.0389, lng: -6.7986 },
+  'Mohammedia': { lat: 33.5917, lng: -7.3839 },
+  'El Jadida': { lat: 33.2319, lng: -8.5007 },
+  'Nador': { lat: 35.1680, lng: -2.9289 }
+};
 
 const CONDITIONS = [
   { value: 'neuf' as ProductCondition, label: 'Neuf' },
@@ -16,21 +34,36 @@ const CONDITIONS = [
   { value: 'use' as ProductCondition, label: 'Usé' }
 ];
 
+const CATEGORIES = [
+  { value: 'electronics' as ProductCategory, label: 'Électronique' },
+  { value: 'cars' as ProductCategory, label: 'Véhicules' },
+  { value: 'clothes' as ProductCategory, label: 'Vêtements' },
+  { value: 'home' as ProductCategory, label: 'Maison & Jardin' },
+  { value: 'sports' as ProductCategory, label: 'Sports & Loisirs' },
+  { value: 'books' as ProductCategory, label: 'Livres' },
+  { value: 'other' as ProductCategory, label: 'Autre' }
+];
+
 interface ListingFormProps {
   onSuccess: () => void;
+  onBack?: () => void;
 }
 
-export default function ListingForm({ onSuccess }: ListingFormProps) {
+export default function ListingForm({ onSuccess, onBack }: ListingFormProps) {
+  const { t } = useTranslation();
   const [imageFile, setImageFile] = useState<File | null>(null);
   const [imagePreview, setImagePreview] = useState<string | null>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [isDetectingLocation, setIsDetectingLocation] = useState(false);
+  const [locationDetected, setLocationDetected] = useState(false);
 
   const [formData, setFormData] = useState<CreateListingData>({
     title: '',
     description: '',
     price: 0,
     condition: 'bon',
+    category: 'other',
     location: '',
     seller_name: '',
     seller_whatsapp: '',
@@ -64,6 +97,47 @@ export default function ListingForm({ onSuccess }: ListingFormProps) {
       return '+212' + cleaned;
     }
     return '+212' + cleaned;
+  };
+
+  const detectLocation = () => {
+    if (!navigator.geolocation) {
+      setError('La géolocalisation n\'est pas supportée par votre navigateur');
+      return;
+    }
+
+    setIsDetectingLocation(true);
+    setError(null);
+
+    navigator.geolocation.getCurrentPosition(
+      async (position) => {
+        const { latitude, longitude } = position.coords;
+        
+        let closestCity = '';
+        let minDistance = Infinity;
+
+        for (const [city, coords] of Object.entries(CITY_COORDINATES)) {
+          const distance = Math.sqrt(
+            Math.pow(latitude - coords.lat, 2) + Math.pow(longitude - coords.lng, 2)
+          );
+          if (distance < minDistance) {
+            minDistance = distance;
+            closestCity = city;
+          }
+        }
+
+        if (closestCity) {
+          setFormData({ ...formData, location: closestCity });
+          setLocationDetected(true);
+        } else {
+          setError('Impossible de déterminer votre ville');
+        }
+        setIsDetectingLocation(false);
+      },
+      (err) => {
+        setError('Impossible de détecter votre position. Veuillez sélectionner une ville manuellement.');
+        setIsDetectingLocation(false);
+      }
+    );
   };
 
   const validateForm = (): boolean => {
@@ -152,6 +226,7 @@ export default function ListingForm({ onSuccess }: ListingFormProps) {
         description: '',
         price: 0,
         condition: 'bon',
+        category: 'other',
         location: '',
         seller_name: '',
         seller_whatsapp: '',
@@ -170,9 +245,18 @@ export default function ListingForm({ onSuccess }: ListingFormProps) {
 
   return (
     <form onSubmit={handleSubmit} className="space-y-6 bg-white rounded-2xl shadow-lg p-6">
-      <div className="text-center mb-6">
-        <h2 className="text-2xl font-bold text-gray-800 mb-2">Publier une annonce</h2>
-        <p className="text-green-600 font-medium">100% Gratuit • Vente rapide</p>
+      <div className="mb-6">
+        <button
+          onClick={onBack}
+          className="flex items-center gap-2 text-gray-600 hover:text-gray-800 mb-4"
+        >
+          <ArrowLeft className="w-5 h-5" />
+          {t('form.back')}
+        </button>
+        <div className="text-center">
+          <h2 className="text-2xl font-bold text-gray-800 mb-2">{t('form.title')}</h2>
+          <p className="text-green-600 font-medium">{t('form.free')}</p>
+        </div>
       </div>
 
       {error && (
@@ -184,7 +268,7 @@ export default function ListingForm({ onSuccess }: ListingFormProps) {
       <div>
         <label className="flex items-center gap-2 text-sm font-semibold text-gray-700 mb-2">
           <Package className="w-4 h-4 text-green-600" />
-          Photo du produit
+          {t('form.image')}
         </label>
         <ImageUpload
           onImageSelected={handleImageSelected}
@@ -196,7 +280,7 @@ export default function ListingForm({ onSuccess }: ListingFormProps) {
       <div>
         <label className="flex items-center gap-2 text-sm font-semibold text-gray-700 mb-2">
           <Tag className="w-4 h-4 text-green-600" />
-          Titre du produit *
+          {t('form.name')} *
         </label>
         <input
           type="text"
@@ -211,7 +295,7 @@ export default function ListingForm({ onSuccess }: ListingFormProps) {
       <div>
         <label className="flex items-center gap-2 text-sm font-semibold text-gray-700 mb-2">
           <FileText className="w-4 h-4 text-green-600" />
-          Description *
+          {t('form.description')} *
         </label>
         <textarea
           value={formData.description}
@@ -227,7 +311,7 @@ export default function ListingForm({ onSuccess }: ListingFormProps) {
         <div>
           <label className="flex items-center gap-2 text-sm font-semibold text-gray-700 mb-2">
             <DollarSign className="w-4 h-4 text-green-600" />
-            Prix (DH) *
+            {t('form.price')} *
           </label>
           <input
             type="number"
@@ -243,7 +327,7 @@ export default function ListingForm({ onSuccess }: ListingFormProps) {
 
         <div>
           <label className="flex items-center gap-2 text-sm font-semibold text-gray-700 mb-2">
-            État *
+            {t('form.condition')} *
           </label>
           <select
             value={formData.condition}
@@ -262,32 +346,65 @@ export default function ListingForm({ onSuccess }: ListingFormProps) {
 
       <div>
         <label className="flex items-center gap-2 text-sm font-semibold text-gray-700 mb-2">
-          <MapPin className="w-4 h-4 text-green-600" />
-          Ville *
+          <Tag className="w-4 h-4 text-green-600" />
+          {t('form.category')} *
         </label>
         <select
-          value={formData.location}
-          onChange={(e) => setFormData({ ...formData, location: e.target.value })}
+          value={formData.category}
+          onChange={(e) => setFormData({ ...formData, category: e.target.value as ProductCategory })}
           className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent outline-none"
           required
         >
-          <option value="">Sélectionnez une ville</option>
-          {MOROCCAN_CITIES.map((city) => (
-            <option key={city} value={city}>
-              {city}
+          <option value="">Sélectionnez une catégorie</option>
+          {CATEGORIES.map((category) => (
+            <option key={category.value} value={category.value}>
+              {category.label}
             </option>
           ))}
         </select>
       </div>
 
+      <div>
+        <label className="flex items-center gap-2 text-sm font-semibold text-gray-700 mb-2">
+          <MapPin className="w-4 h-4 text-green-600" />
+          {t('form.location')} *
+        </label>
+        <div className="flex gap-2">
+          <select
+            value={formData.location}
+            onChange={(e) => { setFormData({ ...formData, location: e.target.value }); setLocationDetected(false); }}
+            className="flex-1 px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent outline-none"
+            required
+          >
+            <option value="">Sélectionnez une ville</option>
+            {MOROCCAN_CITIES.map((city) => (
+              <option key={city} value={city}>
+                {city}
+              </option>
+            ))}
+          </select>
+          <button
+            type="button"
+            onClick={detectLocation}
+            disabled={isDetectingLocation}
+            className="px-4 py-2 bg-green-100 text-green-700 rounded-lg hover:bg-green-200 disabled:bg-gray-100 disabled:text-gray-400 text-sm font-medium whitespace-nowrap"
+          >
+            {isDetectingLocation ? '...' : locationDetected ? '✓ Détecté' : '📍 Auto'}
+          </button>
+        </div>
+        {locationDetected && (
+          <p className="text-xs text-green-600 mt-1">Ville détectée automatiquement</p>
+        )}
+      </div>
+
       <div className="border-t pt-6">
-        <h3 className="text-lg font-semibold text-gray-800 mb-4">Vos coordonnées</h3>
+        <h3 className="text-lg font-semibold text-gray-800 mb-4">{t('form.contact')}</h3>
 
         <div className="space-y-4">
           <div>
             <label className="flex items-center gap-2 text-sm font-semibold text-gray-700 mb-2">
               <User className="w-4 h-4 text-green-600" />
-              Nom complet *
+              {t('form.fullname')} *
             </label>
             <input
               type="text"
@@ -302,7 +419,7 @@ export default function ListingForm({ onSuccess }: ListingFormProps) {
           <div>
             <label className="flex items-center gap-2 text-sm font-semibold text-gray-700 mb-2">
               <Phone className="w-4 h-4 text-green-600" />
-              Numéro WhatsApp *
+              {t('form.whatsapp')} *
             </label>
             <input
               type="tel"
@@ -313,22 +430,22 @@ export default function ListingForm({ onSuccess }: ListingFormProps) {
               required
             />
             <p className="text-xs text-gray-500 mt-1">
-              Les acheteurs vous contacteront via WhatsApp
+              {t('form.whatsappDesc')}
             </p>
           </div>
         </div>
       </div>
 
-      <button
-        type="submit"
-        disabled={isSubmitting}
-        className="w-full bg-green-600 text-white font-bold py-4 px-6 rounded-lg hover:bg-green-700 transition-colors disabled:bg-gray-400 disabled:cursor-not-allowed text-lg shadow-lg"
-      >
-        {isSubmitting ? 'Publication en cours...' : '🚀 Publier mon annonce'}
-      </button>
+        <button
+          type="submit"
+          disabled={isSubmitting}
+          className="w-full bg-green-600 text-white font-bold py-4 px-6 rounded-lg hover:bg-green-700 transition-colors disabled:bg-gray-400 disabled:cursor-not-allowed text-lg shadow-lg"
+        >
+          {isSubmitting ? t('form.submit').replace('🚀 ', '') : t('form.submit')}
+        </button>
 
       <p className="text-xs text-center text-gray-500">
-        En publiant, vous acceptez que votre annonce soit visible publiquement
+        {t('form.disclaimer')}
       </p>
     </form>
   );

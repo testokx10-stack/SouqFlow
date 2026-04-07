@@ -1,5 +1,6 @@
 export type ProductCondition = 'neuf' | 'tres_bon' | 'bon' | 'use';
 export type ListingStatus = 'active' | 'sold' | 'inactive';
+export type ProductCategory = 'electronics' | 'cars' | 'clothes' | 'home' | 'sports' | 'books' | 'other';
 
 export interface Listing {
   id: string;
@@ -7,6 +8,7 @@ export interface Listing {
   description: string;
   price: number;
   condition: ProductCondition;
+  category: ProductCategory;
   location: string;
   seller_name: string;
   seller_whatsapp: string;
@@ -21,6 +23,7 @@ export interface CreateListingData {
   description: string;
   price: number;
   condition: ProductCondition;
+  category: ProductCategory;
   location: string;
   seller_name: string;
   seller_whatsapp: string;

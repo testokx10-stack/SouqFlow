@@ -1,0 +1,111 @@
+{
+  "header": {
+    "title": "YouSouq - Buy & Sell Used Items Morocco",
+    "sell": "Sell",
+    "ads": "Ads"
+  },
+  "hero": {
+    "title": "Sell your used items",
+    "subtitle": "Post an ad in seconds with WhatsApp",
+    "button": "Sell now - 100% Free"
+  },
+  "features": {
+    "title": "Why choose YouSouq?",
+    "instant": "Instant posting",
+    "instantDesc": "Post your ad in less than 30 seconds",
+    "secure": "100% Secure",
+    "secureDesc": "Cash payment, no risk",
+    "community": "Active community",
+    "communityDesc": "Thousands of buyers in Morocco",
+    "fast": "Fast sale",
+    "fastDesc": "Direct contact via WhatsApp"
+  },
+  "stats": {
+    "title": "Join our active community",
+    "subtitle": "Start selling your used products and earn money easily",
+    "listings": "Active listings",
+    "users": "Active sellers",
+    "free": "Free"
+  },
+  "listings": {
+    "recent": "Recent ads",
+    "products": "products available",
+    "loading": "Loading ads...",
+    "empty": "No ads available yet",
+    "emptyDesc": "Be the first to post an ad!",
+    "all": "All",
+    "electronics": "Electronics",
+    "cars": "Vehicles",
+    "clothes": "Clothing",
+    "home": "Home & Garden",
+    "sports": "Sports & Leisure",
+    "books": "Books",
+    "other": "Other"
+  },
+  "form": {
+    "title": "Post an ad",
+    "free": "100% Free • Fast Sale",
+    "image": "Product photo",
+    "name": "Product title *",
+    "description": "Description *",
+    "price": "Price (MAD) *",
+    "condition": "Condition *",
+    "category": "Category *",
+    "location": "City *",
+    "contact": "Your contact",
+    "fullname": "Full name *",
+    "whatsapp": "WhatsApp number *",
+    "whatsappDesc": "Buyers will contact you via WhatsApp",
+    "submit": "🚀 Post my ad",
+    "disclaimer": "By posting, you agree that your ad is publicly visible",
+    "success": "Ad posted successfully!",
+    "successDesc": "Your product is now visible to all buyers.",
+    "back": "Back to ads"
+  },
+  "footer": {
+    "about": "YouSouq - Moroccan marketplace",
+    "description": "Sell and buy easily",
+    "privacy": "Privacy Policy",
+    "terms": "Terms of Service",
+    "copyright": "© 2026 YouSouq. All rights reserved."
+  },
+  "privacy": {
+    "title": "Privacy Policy",
+    "data": "Data collection and use",
+    "dataText": "YouSouq is committed to protecting users' privacy. We do not collect or store any personally identifiable information.",
+    "stored": "The information entered when posting ads (name, WhatsApp) is only used to facilitate contact between buyers and sellers. This data is not retained on our servers after the transaction.",
+    "cookies": "Cookies and tracking technologies",
+    "cookiesText": "We do not use any tracking cookies or technologies that allow user identification. Our platform operates without collecting behavioral data.",
+    "compliance": "Regulatory compliance",
+    "complianceText": "In accordance with Law 09-08 on the protection of natural persons with regard to the processing of personal data (CNDP) and ANRT regulations, we guarantee that:",
+    "points": [
+      "No personal data is collected without explicit consent",
+      "Data is not shared with third parties",
+      "Users have the right to delete their data at any time",
+      "We do not sell data for commercial purposes"
+    ],
+    "contact": "Contact",
+    "contactText": "For any questions about this policy, contact us through available channels on the platform."
+  },
+  "terms": {
+    "title": "Terms of Service",
+    "acceptance": "Acceptance of terms",
+    "acceptanceText": "By using YouSouq, you accept these terms of service. If you do not accept these terms, please do not use our platform.",
+    "service": "Service description",
+    "serviceText": "YouSouq is a marketplace platform allowing users to post and view used product ads in Morocco. The service is provided free of charge.",
+    "responsibilities": "User responsibilities",
+    "responsibilitiesText": "Users agree to:",
+    "responsibilitiesPoints": [
+      "Provide accurate and verifiable information",
+      "Not post illegal, offensive or fraudulent content",
+      "Respect intellectual property rights",
+      "Use WhatsApp only for legitimate communications"
+    ],
+    "liability": "Platform liability",
+    "liabilityText": "YouSouq acts as a neutral intermediary. We are not responsible for transactions between users nor for the quality of advertised products. Users are encouraged to verify products before purchase.",
+    "modification": "Terms modification",
+    "modificationText": "We reserve the right to modify these terms at any time. Modifications will take effect immediately after posting.",
+    "law": "Applicable law",
+    "lawText": "These terms are governed by Moroccan law. Any dispute will be subject to the competent jurisdictions of Morocco."
+  }
+}

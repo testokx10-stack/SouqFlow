@@ -12,6 +12,16 @@ const CONDITION_LABELS: Record<string, string> = {
   use: 'Usé'
 };
 
+const CATEGORY_LABELS: Record<string, string> = {
+  electronics: 'Électronique',
+  cars: 'Véhicules',
+  clothes: 'Vêtements',
+  home: 'Maison',
+  sports: 'Sports',
+  books: 'Livres',
+  other: 'Autre'
+};
+
 export default function ListingCard({ listing }: ListingCardProps) {
   const handleWhatsAppClick = () => {
     const message = encodeURIComponent(
@@ -40,6 +50,7 @@ export default function ListingCard({ listing }: ListingCardProps) {
             src={listing.image_url}
             alt={listing.title}
             className="w-full h-full object-cover"
+            loading="lazy"
           />
         ) : (
           <div className="w-full h-full flex items-center justify-center">
@@ -64,6 +75,9 @@ export default function ListingCard({ listing }: ListingCardProps) {
           <span className="flex items-center gap-1">
             <MapPin className="w-3 h-3" />
             {listing.location}
+          </span>
+          <span className="bg-blue-100 text-blue-800 px-2 py-1 rounded">
+            {CATEGORY_LABELS[listing.category]}
           </span>
           <span className="bg-gray-100 px-2 py-1 rounded">
             {CONDITION_LABELS[listing.condition]}
