@@ -116,6 +116,24 @@ function App() {
               </div>
 
                 <div className="flex items-center gap-2">
+                <div className="flex gap-1">
+                  <button
+                    onClick={() => i18n.changeLanguage('fr')}
+                    className={`px-2 py-1 rounded text-sm font-medium ${
+                      i18n.language === 'fr' ? 'bg-[#16A34A] text-white' : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
+                    }`}
+                  >
+                    FR
+                  </button>
+                  <button
+                    onClick={() => i18n.changeLanguage('ar')}
+                    className={`px-2 py-1 rounded text-sm font-medium ${
+                      i18n.language === 'ar' ? 'bg-[#16A34A] text-white' : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
+                    }`}
+                  >
+                    AR
+                  </button>
+                </div>
                 <button
                   onClick={() => {
                     if (!sellerPhone) {
