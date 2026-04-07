@@ -26,7 +26,10 @@
     "cancel": "Cancel",
     "save": "Save",
     "sold": "Sold",
-    "active": "Active"
+    "active": "Active",
+    "enterPin": "Security PIN",
+    "pinDesc": "Enter your 4-digit PIN to access your listings management",
+    "verify": "Verify"
   },
   "hero": {
     "title": "Buy and sell easily in Morocco 🇲🇦",

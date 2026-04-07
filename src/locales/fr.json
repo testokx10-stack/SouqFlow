@@ -26,7 +26,10 @@
     "cancel": "Annuler",
     "save": "Enregistrer",
     "sold": "Vendu",
-    "active": "Actif"
+    "active": "Actif",
+    "enterPin": "Code PIN de sécurité",
+    "pinDesc": "Entrez votre code PIN à 4 chiffres pour accéder à la gestion de vos annonces",
+    "verify": "Vérifier"
   },
   "hero": {
     "title": "Vendez et achetez facilement au Maroc 🇲🇦",

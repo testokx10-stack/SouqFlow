@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { supabase } from '../lib/supabase';
 import type { Listing } from '../types/listing';
-import { Package, Edit, Trash2, Check, X, MessageCircle } from 'lucide-react';
+import { Package, Edit, Trash2, Check, X, MessageCircle, Lock } from 'lucide-react';
 
 interface MyListingsProps {
   sellerPhone: string;
@@ -15,6 +15,8 @@ export default function MyListings({ sellerPhone }: MyListingsProps) {
   const [editingId, setEditingId] = useState<string | null>(null);
   const [editForm, setEditForm] = useState({ title: '', price: 0, description: '' });
   const [deleteConfirm, setDeleteConfirm] = useState<string | null>(null);
+  const [verifiedPin, setVerifiedPin] = useState<string | null>(null);
+  const [showPinModal, setShowPinModal] = useState(false);
 
   const normalizePhone = (phone: string): string => {
     let cleaned = phone.replace(/\D/g, '');
@@ -43,20 +45,37 @@ export default function MyListings({ sellerPhone }: MyListingsProps) {
   };
 
   useEffect(() => {
+    const storedPin = localStorage.getItem(`yousouq_pin_${normalizePhone(sellerPhone)}`);
+    if (storedPin) setVerifiedPin(storedPin);
+    else setShowPinModal(true);
     fetchMyListings();
   }, [sellerPhone]);
 
+  const handleVerifyPin = (pin: string) => {
+    const storedPin = localStorage.getItem(`yousouq_pin_${normalizePhone(sellerPhone)}`);
+    if (!storedPin) {
+      localStorage.setItem(`yousouq_pin_${normalizePhone(sellerPhone)}`, pin);
+      setVerifiedPin(pin);
+    } else if (storedPin === pin) {
+      setVerifiedPin(pin);
+    }
+    setShowPinModal(false);
+  };
+
   const handleMarkAsSold = async (id: string) => {
+    if (!verifiedPin) { setShowPinModal(true); return; }
     await supabase.from('listings').update({ status: 'sold' }).eq('id', id);
     fetchMyListings();
   };
 
   const handleReactivate = async (id: string) => {
+    if (!verifiedPin) { setShowPinModal(true); return; }
     await supabase.from('listings').update({ status: 'active' }).eq('id', id);
     fetchMyListings();
   };
 
   const handleDelete = async (id: string) => {
+    if (!verifiedPin) { setShowPinModal(true); return; }
     await supabase.from('listings').delete().eq('id', id);
     setDeleteConfirm(null);
     fetchMyListings();
@@ -176,10 +195,40 @@ export default function MyListings({ sellerPhone }: MyListingsProps) {
                 <button onClick={() => handleDelete(listing.id)} className="px-3 py-1 bg-red-600 text-white rounded text-sm">{t('myListings.yes')}</button>
                 <button onClick={() => setDeleteConfirm(null)} className="px-3 py-1 bg-gray-200 text-gray-700 rounded text-sm">{t('myListings.cancel')}</button>
               </div>
-            </div>
-          )}
+              </div>
+            )}
         </div>
       ))}
     </div>
   );
+
+  if (showPinModal) {
+    const [pin, setPin] = useState('');
+    return (
+      <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
+        <div className="bg-white rounded-xl p-6 max-w-sm w-full">
+          <div className="flex items-center gap-2 mb-4">
+            <Lock className="w-5 h-5 text-[#16A34A]" />
+            <h3 className="text-xl font-bold">{t('myListings.enterPin')}</h3>
+          </div>
+          <p className="text-gray-600 text-sm mb-4">{t('myListings.pinDesc')}</p>
+          <input
+            type="password"
+            maxLength={4}
+            value={pin}
+            onChange={(e) => setPin(e.target.value.replace(/\D/g, '').slice(0,4))}
+            placeholder="••••"
+            className="w-full px-4 py-3 border border-gray-200 rounded-lg mb-4 text-center text-2xl tracking-widest"
+          />
+          <button
+            onClick={() => handleVerifyPin(pin)}
+            disabled={pin.length !== 4}
+            className="w-full bg-[#16A34A] text-white py-3 rounded-lg font-medium disabled:bg-gray-300"
+          >
+            {t('myListings.verify')}
+          </button>
+        </div>
+      </div>
+    );
+  }
 }
