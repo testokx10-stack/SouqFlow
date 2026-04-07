@@ -294,7 +294,7 @@ export default function ListingForm({ onSuccess, onBack }: ListingFormProps) {
       </button>
 
       <p className="text-xs text-center text-gray-400">
-        {t('form.disclaimer')} • <button type="button" onClick={() => window.open('/privacy', '_blank')} className="underline hover:text-gray-600">{t('footer.privacy')}</button>
+        {t('form.disclaimer')} • <button type="button" onClick={() => window.dispatchEvent(new CustomEvent('openPrivacy'))} className="underline hover:text-gray-600">{t('footer.privacy')}</button>
       </p>
     </form>
   );

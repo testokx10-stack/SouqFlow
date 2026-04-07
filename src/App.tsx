@@ -67,6 +67,12 @@ function App() {
     setTimeout(() => setShowSuccessMessage(false), 5000);
   };
 
+  useEffect(() => {
+    const handleOpenPrivacy = () => setShowPrivacy(true);
+    window.addEventListener('openPrivacy', handleOpenPrivacy);
+    return () => window.removeEventListener('openPrivacy', handleOpenPrivacy);
+  }, []);
+
   return (
     <>
       <Helmet>
@@ -106,7 +112,7 @@ function App() {
           <div className="max-w-7xl mx-auto px-4 py-3">
             <div className="flex items-center justify-between gap-4">
               <div className="flex-shrink-0">
-                <img src="/logo.png" alt="YouSouq" className="h-12 w-auto" />
+                <img src="/logo.png" alt="YouSouq" className="h-14 w-auto" />
               </div>
 
                 <div className="flex items-center gap-2">
