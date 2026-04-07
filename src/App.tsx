@@ -72,9 +72,15 @@ function App() {
         <meta name="keywords" content="vendre occasion maroc, marketplace maroc, souq maroc, achat vente maroc, avito maroc" />
         <meta property="og:title" content="Acheter et vendre au Maroc | YouSouq" />
         <meta property="og:description" content="Vendez vos produits d'occasion au Maroc. Publiez en quelques secondes avec WhatsApp." />
-        <meta property="og:image" content="https://yousouq.vercel.app/og-image.jpg" />
+        <meta property="og:image" content="https://yousouq.vercel.app/logo.png" />
+        <meta property="og:image:width" content="200" />
+        <meta property="og:image:height" content="200" />
         <meta property="og:url" content="https://yousouq.vercel.app" />
         <meta property="og:type" content="website" />
+        <meta name="twitter:card" content="summary" />
+        <meta name="twitter:title" content="Acheter et vendre au Maroc | YouSouq" />
+        <meta name="twitter:description" content="Vendez vos produits d'occasion au Maroc. Publiez en quelques secondes avec WhatsApp." />
+        <meta name="twitter:image" content="https://yousouq.vercel.app/logo.png" />
         <script type="application/ld+json">
           {JSON.stringify({
             "@context": "https://schema.org",
