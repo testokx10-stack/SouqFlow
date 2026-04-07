@@ -120,10 +120,6 @@
     "contact": "7. Nous contacter",
     "contactText": "Pour toute question ou demande concernant vos données, contactez-nous via WhatsApp ou email."
   },
-  "form": {
-    "consent": "J'accepte que mes données (numéro WhatsApp, nom) soient utilisées pour publier mon annonce et permettre aux acheteurs de me contacter. Je comprends que je peux demander la suppression de mes données à tout moment.",
-    "consentError": "Vous devez accepter les conditions pour publier une annonce"
-  },
   "terms": {
     "title": "Conditions d'utilisation",
     "acceptance": "Acceptation des conditions",
