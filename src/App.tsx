@@ -28,6 +28,8 @@ function App() {
   const [showTerms, setShowTerms] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
+  const [selectedCity, setSelectedCity] = useState<string>('all');
+  const [cities, setCities] = useState<string[]>([]);
   const [stats, setStats] = useState({ listings: 0, users: 0 });
   const [sellerPhone, setSellerPhone] = useState<string>('');
   const [showPhoneModal, setShowPhoneModal] = useState(false);
@@ -50,6 +52,14 @@ function App() {
         listings: listingsCount || 0,
         users: uniqueUsers || 0
       });
+
+      const { data: locationData } = await supabase
+        .from('listings')
+        .select('location')
+        .eq('status', 'active');
+      
+      const uniqueCities = Array.from(new Set(locationData?.map(l => l.location).filter(Boolean))).sort();
+      setCities(uniqueCities);
     } catch (error) {
       console.error('Error fetching stats:', error);
     }
@@ -258,7 +268,20 @@ function App() {
 
             {/* Search Bar */}
             <section className="py-8 px-4">
-              <div className="max-w-2xl mx-auto">
+              <div className="max-w-2xl mx-auto space-y-4">
+                {/* City Filter */}
+                <select
+                  value={selectedCity}
+                  onChange={(e) => setSelectedCity(e.target.value)}
+                  className="w-full px-4 py-3 border border-gray-200 rounded-xl text-lg bg-white"
+                >
+                  <option value="all">{t('filter.allCities')}</option>
+                  {cities.map(city => (
+                    <option key={city} value={city}>{city}</option>
+                  ))}
+                </select>
+                
+                {/* Search Input */}
                 <div className="relative">
                   <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
                   <input
@@ -315,7 +338,7 @@ function App() {
             {/* Listings */}
             <section id="listings" className="px-4 pb-16">
               <div className="max-w-7xl mx-auto">
-                <ListingsGrid searchQuery={searchQuery} selectedCategory={selectedCategory} />
+                <ListingsGrid searchQuery={searchQuery} selectedCategory={selectedCategory} selectedCity={selectedCity} />
               </div>
             </section>
           </>

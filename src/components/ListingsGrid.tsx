@@ -8,16 +8,14 @@ import { Package } from 'lucide-react';
 interface ListingsGridProps {
   searchQuery?: string;
   selectedCategory?: string;
+  selectedCity?: string;
 }
 
-export default function ListingsGrid({ searchQuery = '', selectedCategory = 'all' }: ListingsGridProps) {
+export default function ListingsGrid({ searchQuery = '', selectedCategory = 'all', selectedCity = 'all' }: ListingsGridProps) {
   const { t } = useTranslation();
   const [allListings, setAllListings] = useState<Listing[]>([]);
   const [listings, setListings] = useState<Listing[]>([]);
   const [loading, setLoading] = useState(true);
-  const [selectedCity, setSelectedCity] = useState<string>('all');
-
-  const cities = Array.from(new Set(allListings.map(l => l.location).filter(Boolean))).sort();
 
   const fetchListings = async () => {
     try {
@@ -109,22 +107,6 @@ export default function ListingsGrid({ searchQuery = '', selectedCategory = 'all
 
   return (
     <div>
-      {/* City Filter */}
-      {cities.length > 0 && (
-        <div className="mb-4">
-          <select
-            value={selectedCity}
-            onChange={(e) => setSelectedCity(e.target.value)}
-            className="px-4 py-2 border border-gray-200 rounded-lg text-gray-700 bg-white"
-          >
-            <option value="all">{t('filter.allCities') || 'All Cities'}</option>
-            {cities.map(city => (
-              <option key={city} value={city}>{city}</option>
-            ))}
-          </select>
-        </div>
-      )}
-
       {!showEmptyState && (
         <p className="text-gray-600 mb-4">{listings.length} {t('listings.products')}</p>
       )}
