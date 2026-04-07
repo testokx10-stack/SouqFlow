@@ -56,6 +56,9 @@
   "search": {
     "placeholder": "ماذا تبحث؟ (سيارة، آيفون، ملابس...)"
   },
+  "filter": {
+    "allCities": "جميع المدن"
+  },
   "categories": {
     "cars": "سيارات",
     "phones": "هواتف",

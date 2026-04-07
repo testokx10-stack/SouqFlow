@@ -56,6 +56,9 @@
   "search": {
     "placeholder": "Que cherchez-vous ? (voiture, iPhone, vêtements...)"
   },
+  "filter": {
+    "allCities": "Toutes les villes"
+  },
   "categories": {
     "cars": "Voitures",
     "phones": "Téléphones",
