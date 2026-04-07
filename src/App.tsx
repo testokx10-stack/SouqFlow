@@ -103,7 +103,7 @@ function App() {
           <div className="max-w-7xl mx-auto px-4 py-3">
             <div className="flex items-center justify-between gap-4">
               <div className="flex-shrink-0">
-                <img src="/logo.png" alt="YouSouq" className="h-10 w-auto" />
+                <img src="/logo.png" alt="YouSouq" className="h-12 w-auto" />
               </div>
 
               <div className="flex items-center gap-3">
@@ -162,10 +162,9 @@ function App() {
         {currentView === 'home' ? (
           <>
             {/* Hero Section */}
-            <section className="py-6 px-4">
-              <div className="max-w-3xl mx-auto text-center">
-                <img src="/logo.png" alt="YouSouq" className="h-40 md:h-56 w-auto mx-auto mb-4" />
-                <h1 className="text-3xl md:text-4xl font-bold text-gray-800 mb-4">
+            <section className="py-4 px-4 min-h-[60vh] flex items-center justify-center">
+              <div className="max-w-4xl mx-auto text-center w-full">
+                <img src="/logo.png" alt="YouSouq" className="w-full max-w-2xl h-auto mx-auto mb-4" />
                 <h1 className="text-3xl md:text-4xl font-bold text-gray-800 mb-4">
                   {t('hero.title')}
                 </h1>

@@ -47,28 +47,40 @@
   },
   "listings": {
     "recent": "Recent ads",
+    "products": "result(s)",
     "noResults": "No ads found",
     "noResultsDesc": "Try with different search criteria",
     "empty": "No ads yet",
     "emptyDesc": "Be the first to post an ad!"
   },
+  "card": {
+    "whatsapp": "Contact WhatsApp"
+  },
   "form": {
     "title": "Post an ad",
     "free": "100% free",
-    "image": "Product photo",
+    "takePhoto": "Take photo",
+    "chooseImage": "Choose image",
     "name": "Your ad title *",
     "description": "Description (optional)",
     "price": "Price (MAD) *",
-    "condition": "Condition *",
-    "category": "Category *",
     "location": "City *",
-    "contact": "Your contact",
     "fullname": "Your name *",
     "whatsapp": "WhatsApp *",
     "submit": "🚀 Post my ad",
+    "submitting": "Posting...",
+    "disclaimer": "No registration • Direct contact via WhatsApp",
     "success": "Ad posted successfully!",
     "successDesc": "Your product is now visible to all buyers.",
-    "back": "Back"
+    "back": "Back",
+    "errorTitle": "Title is required",
+    "errorPrice": "Price must be greater than 0 MAD",
+    "errorLocation": "City is required",
+    "errorName": "Your name is required",
+    "errorWhatsApp": "WhatsApp number is required",
+    "errorPhone": "Invalid WhatsApp number",
+    "errorUpload": "Error uploading image",
+    "errorSubmit": "Error posting ad"
   },
   "footer": {
     "about": "YouSouq - Morocco Marketplace",

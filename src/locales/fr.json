@@ -53,23 +53,34 @@
     "empty": "Aucune annonce pour le moment",
     "emptyDesc": "Soyez le premier à publier une annonce !"
   },
+  "card": {
+    "whatsapp": "Contacter WhatsApp"
+  },
   "form": {
     "title": "Publier une annonce",
     "free": "100% gratuit",
-    "image": "Photo du produit",
+    "takePhoto": "Prendre photo",
+    "chooseImage": "Choisir image",
     "name": "Titre de votre annonce *",
     "description": "Description (optionnel)",
     "price": "Prix (DH) *",
-    "condition": "État *",
-    "category": "Catégorie *",
     "location": "Ville *",
-    "contact": "Vos coordonnées",
     "fullname": "Votre nom *",
     "whatsapp": "WhatsApp *",
     "submit": "🚀 Publier mon annonce",
+    "submitting": "Publication...",
+    "disclaimer": "Sans inscription • Contact direct via WhatsApp",
     "success": "Annonce publiée avec succès !",
     "successDesc": "Votre produit est maintenant visible par tous les acheteurs.",
-    "back": "Retour"
+    "back": "Retour",
+    "errorTitle": "Le titre est obligatoire",
+    "errorPrice": "Le prix doit être supérieur à 0 DH",
+    "errorLocation": "La ville est obligatoire",
+    "errorName": "Votre nom est obligatoire",
+    "errorWhatsApp": "Le numéro WhatsApp est obligatoire",
+    "errorPhone": "Numéro WhatsApp invalide",
+    "errorUpload": "Erreur lors du téléchargement de l'image",
+    "errorSubmit": "Erreur lors de la publication"
   },
   "footer": {
     "about": "YouSouq - Marketplace Maroc",

@@ -47,28 +47,40 @@
   },
   "listings": {
     "recent": "أحدث الإعلانات",
+    "products": "نتيجة",
     "noResults": "لم يتم العثور على إعلانات",
     "noResultsDesc": "جرب بمعايير بحث مختلفة",
     "empty": "لا توجد إعلانات بعد",
     "emptyDesc": "كن أول من ينشر إعلان!"
   },
+  "card": {
+    "whatsapp": "تواصل واتساب"
+  },
   "form": {
     "title": "نشر إعلان",
     "free": "مجاناً 100%",
-    "image": "صورة المنتج",
+    "takePhoto": "التقط صورة",
+    "chooseImage": "اختر صورة",
     "name": "عنوان الإعلان *",
     "description": "الوصف (اختياري)",
     "price": "السعر (درهم) *",
-    "condition": "الحالة *",
-    "category": "الفئة *",
     "location": "المدينة *",
-    "contact": "معلومات الاتصال",
     "fullname": "اسمك *",
     "whatsapp": "واتساب *",
     "submit": "🚀 نشر إعلاني",
+    "submitting": "جاري النشر...",
+    "disclaimer": "بدون تسجيل • تواصل مباشر عبر الواتساب",
     "success": "تم نشر الإعلان بنجاح!",
     "successDesc": "منتجك الآن مرئي لجميع المشترين.",
-    "back": "رجوع"
+    "back": "رجوع",
+    "errorTitle": "العنوان مطلوب",
+    "errorPrice": "السعر يجب أن يكون أكبر من 0",
+    "errorLocation": "المدينة مطلوبة",
+    "errorName": "الاسم مطلوب",
+    "errorWhatsApp": "رقم الواتساب مطلوب",
+    "errorPhone": "رقم الواتساب غير صالح",
+    "errorUpload": "خطأ في رفع الصورة",
+    "errorSubmit": "خطأ في نشر الإعلان"
   },
   "footer": {
     "about": "يوسوق - سوق المغرب",

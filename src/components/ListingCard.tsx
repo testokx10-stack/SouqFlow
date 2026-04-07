@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next';
 import { MapPin, MessageCircle, Package } from 'lucide-react';
 import type { Listing } from '../types/listing';
 
@@ -5,18 +6,9 @@ interface ListingCardProps {
   listing: Listing;
 }
 
-const CATEGORY_LABELS: Record<string, string> = {
-  electronics: 'Électronique',
-  cars: 'Véhicules',
-  clothes: 'Vêtements',
-  home: 'Maison',
-  sports: 'Sports',
-  books: 'Livres',
-  phones: 'Téléphones',
-  other: 'Autre'
-};
-
 export default function ListingCard({ listing }: ListingCardProps) {
+  const { t } = useTranslation();
+
   const handleWhatsAppClick = () => {
     const message = encodeURIComponent(
       `Bonjour, je suis intéressé par votre produit : ${listing.title}\n\nPrix: ${listing.price} DH`
@@ -24,6 +16,8 @@ export default function ListingCard({ listing }: ListingCardProps) {
     const whatsappUrl = `https://wa.me/${listing.seller_whatsapp.replace(/\D/g, '')}?text=${message}`;
     window.open(whatsappUrl, '_blank');
   };
+
+  const categoryLabel = listing.category ? t(`categories.${listing.category}`) : t('categories.other');
 
   return (
     <div className="bg-white rounded-xl shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1 overflow-hidden">
@@ -58,7 +52,7 @@ export default function ListingCard({ listing }: ListingCardProps) {
         
         {listing.category && (
           <span className="inline-block text-xs text-gray-500 bg-gray-100 px-2 py-0.5 rounded mb-2">
-            {CATEGORY_LABELS[listing.category] || listing.category}
+            {categoryLabel}
           </span>
         )}
 
@@ -67,7 +61,7 @@ export default function ListingCard({ listing }: ListingCardProps) {
           className="w-full bg-[#16A34A] hover:bg-green-700 text-white py-2 rounded-lg font-medium flex items-center justify-center gap-2 transition-colors text-sm"
         >
           <MessageCircle className="w-4 h-4" />
-          Contacter WhatsApp
+          {t('card.whatsapp')}
         </button>
       </div>
     </div>
