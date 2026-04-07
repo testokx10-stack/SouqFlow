@@ -13,6 +13,21 @@
     "enterPhoneDesc": "Pour voir et gérer vos annonces",
     "confirm": "Confirmer"
   },
+  "myListings": {
+    "title": "Mes annonces",
+    "noListings": "Vous n'avez pas encore d'annonces",
+    "noListingsDesc": "Publiez votre première annonce pour commencer à vendre!",
+    "edit": "Modifier",
+    "markSold": "Marquer comme vendu",
+    "reactivate": "Réactiver",
+    "delete": "Supprimer",
+    "confirmDelete": "Êtes-vous sûr de vouloir supprimer cette annonce?",
+    "yes": "Oui, supprimer",
+    "cancel": "Annuler",
+    "save": "Enregistrer",
+    "sold": "Vendu",
+    "active": "Actif"
+  },
   "hero": {
     "title": "Vendez et achetez facilement au Maroc 🇲🇦",
     "subtitle": "Publiez votre annonce en moins de 30 secondes. Sans compte. 100% gratuit.",

@@ -13,6 +13,21 @@
     "enterPhoneDesc": "To view and manage your listings",
     "confirm": "Confirm"
   },
+  "myListings": {
+    "title": "My listings",
+    "noListings": "You don't have any listings yet",
+    "noListingsDesc": "Post your first ad to start selling!",
+    "edit": "Edit",
+    "markSold": "Mark as sold",
+    "reactivate": "Reactivate",
+    "delete": "Delete",
+    "confirmDelete": "Are you sure you want to delete this ad?",
+    "yes": "Yes, delete",
+    "cancel": "Cancel",
+    "save": "Save",
+    "sold": "Sold",
+    "active": "Active"
+  },
   "hero": {
     "title": "Buy and sell easily in Morocco 🇲🇦",
     "subtitle": "Post your ad in less than 30 seconds. No account. 100% free.",

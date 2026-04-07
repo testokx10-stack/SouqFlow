@@ -72,15 +72,15 @@ export default function MyListings({ sellerPhone }: MyListingsProps) {
     return (
       <div className="text-center py-12 bg-white rounded-xl">
         <Package className="w-16 h-16 text-gray-300 mx-auto mb-4" />
-        <h3 className="text-xl font-semibold text-gray-700 mb-2">Vous n'avez pas encore d'annonces</h3>
-        <p className="text-gray-500">Publiez votre première annonce pour commencer à vendre!</p>
+        <h3 className="text-xl font-semibold text-gray-700 mb-2">{t('myListings.noListings')}</h3>
+        <p className="text-gray-500">{t('myListings.noListingsDesc')}</p>
       </div>
     );
   }
 
   return (
     <div className="space-y-4">
-      <h2 className="text-2xl font-bold text-gray-800 mb-4">Mes annonces ({listings.length})</h2>
+      <h2 className="text-2xl font-bold text-gray-800 mb-4">{t('myListings.title')} ({listings.length})</h2>
       
       {listings.map((listing) => (
         <div key={listing.id} className="bg-white rounded-xl shadow-sm p-4">
@@ -91,28 +91,28 @@ export default function MyListings({ sellerPhone }: MyListingsProps) {
                 value={editForm.title}
                 onChange={(e) => setEditForm({ ...editForm, title: e.target.value })}
                 className="w-full px-3 py-2 border rounded-lg"
-                placeholder="Titre"
+                placeholder={t('form.name')}
               />
               <input
                 type="number"
                 value={editForm.price}
                 onChange={(e) => setEditForm({ ...editForm, price: parseFloat(e.target.value) || 0 })}
                 className="w-full px-3 py-2 border rounded-lg"
-                placeholder="Prix (DH)"
+                placeholder={t('form.price')}
               />
               <textarea
                 value={editForm.description}
                 onChange={(e) => setEditForm({ ...editForm, description: e.target.value })}
                 className="w-full px-3 py-2 border rounded-lg"
-                placeholder="Description"
+                placeholder={t('form.description')}
                 rows={2}
               />
               <div className="flex gap-2">
                 <button onClick={() => handleSaveEdit(listing.id)} className="px-4 py-2 bg-green-600 text-white rounded-lg flex items-center gap-2">
-                  <Check className="w-4 h-4" /> Enregistrer
+                  <Check className="w-4 h-4" /> {t('myListings.save')}
                 </button>
                 <button onClick={() => setEditingId(null)} className="px-4 py-2 bg-gray-200 text-gray-700 rounded-lg flex items-center gap-2">
-                  <X className="w-4 h-4" /> Annuler
+                  <X className="w-4 h-4" /> {t('myListings.cancel')}
                 </button>
               </div>
             </div>
@@ -134,24 +134,24 @@ export default function MyListings({ sellerPhone }: MyListingsProps) {
                     <h3 className="font-semibold text-gray-800">{listing.title}</h3>
                     <p className="text-[#F97316] font-bold">{listing.price} DH</p>
                     <span className={`inline-block text-xs px-2 py-0.5 rounded ${listing.status === 'sold' ? 'bg-gray-200 text-gray-600' : 'bg-green-100 text-green-700'}`}>
-                      {listing.status === 'sold' ? 'Vendu' : 'Actif'}
+                      {listing.status === 'sold' ? t('myListings.sold') : t('myListings.active')}
                     </span>
                   </div>
                   
                   <div className="flex gap-1">
-                    <button onClick={() => handleEdit(listing)} className="p-2 text-blue-600 hover:bg-blue-50 rounded" title="Modifier">
+                    <button onClick={() => handleEdit(listing)} className="p-2 text-blue-600 hover:bg-blue-50 rounded" title={t('myListings.edit')}>
                       <Edit className="w-4 h-4" />
                     </button>
                     {listing.status === 'active' ? (
-                      <button onClick={() => handleMarkAsSold(listing.id)} className="p-2 text-green-600 hover:bg-green-50 rounded" title="Marquer comme vendu">
+                      <button onClick={() => handleMarkAsSold(listing.id)} className="p-2 text-green-600 hover:bg-green-50 rounded" title={t('myListings.markSold')}>
                         <Check className="w-4 h-4" />
                       </button>
                     ) : (
-                      <button onClick={() => handleReactivate(listing.id)} className="p-2 text-orange-600 hover:bg-orange-50 rounded" title="Réactiver">
+                      <button onClick={() => handleReactivate(listing.id)} className="p-2 text-orange-600 hover:bg-orange-50 rounded" title={t('myListings.reactivate')}>
                         <MessageCircle className="w-4 h-4" />
                       </button>
                     )}
-                    <button onClick={() => setDeleteConfirm(listing.id)} className="p-2 text-red-600 hover:bg-red-50 rounded" title="Supprimer">
+                    <button onClick={() => setDeleteConfirm(listing.id)} className="p-2 text-red-600 hover:bg-red-50 rounded" title={t('myListings.delete')}>
                       <Trash2 className="w-4 h-4" />
                     </button>
                   </div>
@@ -162,10 +162,10 @@ export default function MyListings({ sellerPhone }: MyListingsProps) {
 
           {deleteConfirm === listing.id && (
             <div className="mt-3 p-3 bg-red-50 rounded-lg flex items-center justify-between">
-              <span className="text-red-700 text-sm">Êtes-vous sûr de vouloir supprimer cette annonce?</span>
+              <span className="text-red-700 text-sm">{t('myListings.confirmDelete')}</span>
               <div className="flex gap-2">
-                <button onClick={() => handleDelete(listing.id)} className="px-3 py-1 bg-red-600 text-white rounded text-sm">Oui, supprimer</button>
-                <button onClick={() => setDeleteConfirm(null)} className="px-3 py-1 bg-gray-200 text-gray-700 rounded text-sm">Annuler</button>
+                <button onClick={() => handleDelete(listing.id)} className="px-3 py-1 bg-red-600 text-white rounded text-sm">{t('myListings.yes')}</button>
+                <button onClick={() => setDeleteConfirm(null)} className="px-3 py-1 bg-gray-200 text-gray-700 rounded text-sm">{t('myListings.cancel')}</button>
               </div>
             </div>
           )}
