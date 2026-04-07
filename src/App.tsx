@@ -162,8 +162,17 @@ function App() {
         {currentView === 'home' ? (
           <>
             {/* Hero Section */}
-            <section className="bg-gradient-to-br from-[#16A34A] to-green-700 py-16 px-4">
-              <div className="max-w-3xl mx-auto text-center">
+            <section 
+              className="bg-gradient-to-br from-[#16A34A] to-green-700 py-16 px-4 relative overflow-hidden"
+              style={{
+                backgroundImage: 'url(/logo.png)',
+                backgroundSize: 'contain',
+                backgroundPosition: 'center',
+                backgroundRepeat: 'no-repeat',
+              }}
+            >
+              <div className="absolute inset-0 bg-gradient-to-br from-[#16A34A]/90 to-green-700/90"></div>
+              <div className="max-w-3xl mx-auto text-center relative z-10">
                 <h1 className="text-3xl md:text-4xl font-bold text-white mb-4">
                   Vendez et achetez facilement au Maroc 🇲🇦
                 </h1>
