@@ -7,14 +7,14 @@
   "header": {
     "sell": "Vendre",
     "ads": "Annonces",
-    "myAds": "Mes annonces",
+    "myAds": "Mes offres",
     "logout": "Changer de numéro",
     "enterPhone": "Entrez votre numéro WhatsApp",
     "enterPhoneDesc": "Pour voir et gérer vos annonces",
     "confirm": "Confirmer"
   },
   "myListings": {
-    "title": "Mes annonces",
+    "title": "Mes offres",
     "noListings": "Vous n'avez pas encore d'annonces",
     "noListingsDesc": "Publiez votre première annonce pour commencer à vendre!",
     "edit": "Modifier",
