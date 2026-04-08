@@ -136,5 +136,41 @@
     "modificationText": "We reserve the right to modify these terms at any time.",
     "law": "Applicable law",
     "lawText": "These terms are governed by Moroccan law."
+  },
+  "footer": {
+    "about": "YouSouq - Morocco Marketplace",
+    "description": "Buy and sell easily in Morocco",
+    "privacy": "Privacy Policy",
+    "terms": "Terms of Service",
+    "copyright": "© 2026 YouSouq. All rights reserved."
+  },
+  "privacy": {
+    "title": "Privacy Policy",
+    "intro": "Your privacy is important to us. This policy explains how we collect and use your data.",
+    "data": "1. Data collected",
+    "dataText": "We only collect data you voluntarily provide: WhatsApp number, name, product photos and ad descriptions.",
+    "usage": "2. Data usage",
+    "usageText": "Your data is used only for:",
+    "usageList": [
+      "Post your ad on YouSouq",
+      "Enable buyers to contact you via WhatsApp",
+      "Display your ad on the platform"
+    ],
+    "storage": "3. Data storage",
+    "storageText": "Your data is stored as long as your ad is active. You can request deletion of your data at any time.",
+    "sharing": "4. Data sharing",
+    "sharingText": "We never share your personal data with third parties. Your contact info is only visible to interested users via WhatsApp.",
+    "rights": "5. Your rights",
+    "rightsText": "Under the law, you have the right to:",
+    "rightsList": [
+      "Access your personal data",
+      "Correct your data",
+      "Delete your data",
+      "Withdraw your consent at any time"
+    ],
+    "cookies": "6. Cookies",
+    "cookiesText": "We don't use tracking cookies. The site only uses necessary technical cookies.",
+    "contact": "7. Contact us",
+    "contactText": "For any questions about your data, contact us via WhatsApp or email."
   }
 }
